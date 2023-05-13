@@ -8,3 +8,11 @@
 /FinancialControl/JVB.FinancialControl.Web/obj
 /.vs
 /FinancialControl/.vs
+/FinancialControl/JVB.FinancialControl.Application/bin/Debug/net6.0
+/FinancialControl/JVB.FinancialControl.Common/bin/Debug/net6.0
+/FinancialControl/JVB.FinancialControl.Common/obj
+/FinancialControl/JVB.FinancialControl.Data/bin/Debug/net6.0
+/FinancialControl/JVB.FinancialControl.Domain/bin/Debug/net6.0
+/FinancialControl/JVB.FinancialControl.UI/bin/Debug/net6.0
+/FinancialControl/JVB.FinancialControl.UI/obj
+/FinancialControl/JVB.FinancialControl.Web/bin/Debug/net6.0

@@ -1,0 +1,23 @@
+﻿using FluentValidation.Results;
+using MediatR;
+
+namespace JVB.FinancialControl.Common.Bus
+{
+    public abstract class Command : IRequest<ValidationResult>, IBaseRequest
+    {
+        public DateTime Timestamp { get; private set; }
+
+        public ValidationResult ValidationResult { get; set; }
+
+        protected Command()
+        {
+            Timestamp = DateTime.Now;
+            ValidationResult = new ValidationResult();
+        }
+
+        public virtual bool IsValid()
+        {
+            return ValidationResult.IsValid;
+        }
+    }
+}

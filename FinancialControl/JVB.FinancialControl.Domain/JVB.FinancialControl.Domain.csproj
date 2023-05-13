@@ -5,5 +5,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
+	<ItemGroup>
+		<PackageReference Include="FluentValidation" Version="10.4.0" />
+		<PackageReference Include="System.ComponentModel" Version="4.3.0" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+		<PackageReference Include="System.Security.Claims" Version="4.3.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\JVB.FinancialControl.Common\JVB.FinancialControl.Common.csproj" />
+	  <ProjectReference Include="..\JVB.FinancialControl.Data\JVB.FinancialControl.Data.csproj" />
+	</ItemGroup>
 </Project>
