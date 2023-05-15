@@ -1,6 +1,4 @@
 ﻿using JVB.FinancialControl.Data.Context;
-using JVB.FinancialControl.Data.Entities;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace JVB.FinancialControl.Web.Configurations
@@ -15,7 +13,6 @@ namespace JVB.FinancialControl.Web.Configurations
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
-
         }
     }
 }

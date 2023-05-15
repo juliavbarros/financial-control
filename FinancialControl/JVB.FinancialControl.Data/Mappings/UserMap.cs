@@ -49,7 +49,6 @@ namespace JVB.FinancialControl.Data.Mappings
             builder.HasOne(c => c.UserType)
                 .WithMany(c => c.Users)
                 .HasForeignKey(c => c.UserTypeId);
-
         }
     }
 }

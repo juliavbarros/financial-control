@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.Xml.Linq;
-
-namespace JVB.FinancialControl.Data.Entities
+﻿namespace JVB.FinancialControl.Data.Entities
 {
     public class User
     {
@@ -21,6 +18,7 @@ namespace JVB.FinancialControl.Data.Entities
 
         protected User()
         { }
+
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
@@ -35,7 +33,5 @@ namespace JVB.FinancialControl.Data.Entities
         public virtual ICollection<Expense> Expenses { get; set; }
         public virtual ICollection<Simulation> Simulations { get; set; }
         public virtual ICollection<Quotation> Quotations { get; set; }
-
-
     }
 }

@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.Diagnostics.Metrics;
-
-namespace JVB.FinancialControl.Data.Entities
+﻿namespace JVB.FinancialControl.Data.Entities
 {
     public class Project
     {
@@ -14,11 +11,10 @@ namespace JVB.FinancialControl.Data.Entities
 
         protected Project()
         { }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public virtual ICollection<Simulation> Simulations { get; set; }
-
-
     }
 }

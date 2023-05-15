@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace JVB.FinancialControl.Data.Entities
+﻿namespace JVB.FinancialControl.Data.Entities
 {
     public class Currency
     {
@@ -13,13 +11,12 @@ namespace JVB.FinancialControl.Data.Entities
 
         protected Currency()
         { }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
 
         public virtual ICollection<Quotation> FromQuotations { get; set; }
         public virtual ICollection<Quotation> ToQuotations { get; set; }
-
-
     }
 }

@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.Diagnostics.Metrics;
-
-namespace JVB.FinancialControl.Data.Entities
+﻿namespace JVB.FinancialControl.Data.Entities
 {
     public class Expense
     {
@@ -32,6 +29,5 @@ namespace JVB.FinancialControl.Data.Entities
         public int UserId { get; set; }
         public virtual ExpenseCategory ExpenseCategory { get; set; }
         public virtual User User { get; set; }
-
     }
 }

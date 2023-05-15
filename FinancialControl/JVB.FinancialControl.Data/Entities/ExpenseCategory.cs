@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Newtonsoft.Json.Linq;
-
-namespace JVB.FinancialControl.Data.Entities
+﻿namespace JVB.FinancialControl.Data.Entities
 {
     public class ExpenseCategory
     {
@@ -9,7 +6,6 @@ namespace JVB.FinancialControl.Data.Entities
         {
             Id = id;
             Name = name;
-
         }
 
         protected ExpenseCategory()
@@ -18,6 +14,5 @@ namespace JVB.FinancialControl.Data.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public virtual ICollection<Expense> Expenses { get; set; }
-
     }
 }

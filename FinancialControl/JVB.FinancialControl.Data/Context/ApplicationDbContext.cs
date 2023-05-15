@@ -1,7 +1,6 @@
 ﻿using JVB.FinancialControl.Data.Entities;
 using JVB.FinancialControl.Data.Interfaces;
 using JVB.FinancialControl.Data.Mappings;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 

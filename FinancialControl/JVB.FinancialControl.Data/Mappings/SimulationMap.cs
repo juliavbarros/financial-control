@@ -27,7 +27,6 @@ namespace JVB.FinancialControl.Data.Mappings
               .HasColumnType("decimal(18,2)")
               .IsRequired();
 
-
             builder.Property(c => c.EntryValue)
               .HasColumnType("decimal(18,2)")
               .IsRequired();

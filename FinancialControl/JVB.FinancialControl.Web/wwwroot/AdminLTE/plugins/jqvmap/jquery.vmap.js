@@ -188,7 +188,6 @@ var JQVMap = function (params) {
   });
 
   jQuery(params.container).delegate(this.canvas.mode === 'svg' ? 'path' : 'shape', 'click', function (regionClickEvent) {
-
     var targetPath = regionClickEvent.target;
     var code = regionClickEvent.target.id.split('_').pop();
     var mapClickEvent = jQuery.Event('regionClick.jqvmap');
@@ -314,7 +313,6 @@ JQVMap.mapIndex = 1;
 JQVMap.maps = {};
 
 (function(){
-
   var apiParams = {
     colors: 1,
     values: 1,
@@ -342,7 +340,6 @@ JQVMap.maps = {};
   };
 
   jQuery.fn.vectorMap = function (options) {
-
     var defaultParams = {
       map: 'world_en',
       backgroundColor: '#a5bfdd',
@@ -391,7 +388,6 @@ JQVMap.maps = {};
       return map;
     }
   };
-
 })(jQuery);
 
 ColorScale.arrayToRgb = function (ar) {
@@ -651,7 +647,6 @@ JQVMap.prototype.makeDraggable = function () {
   var touchY;
 
   this.container.mousemove(function (e) {
-
     if (mouseDown) {
       self.transX -= (oldPageX - e.pageX) / self.scale;
       self.transY -= (oldPageY - e.pageY) / self.scale;
@@ -670,17 +665,13 @@ JQVMap.prototype.makeDraggable = function () {
     }
 
     return false;
-
   }).mousedown(function (e) {
-
     mouseDown = true;
     oldPageX = e.pageX;
     oldPageY = e.pageY;
 
     return false;
-
   }).mouseup(function () {
-
     mouseDown = false;
 
     clearTimeout(self.isMovingTimeout);
@@ -689,11 +680,8 @@ JQVMap.prototype.makeDraggable = function () {
     }, 100);
 
     return false;
-
   }).mouseout(function () {
-
     if(mouseDown && self.isMoving){
-
       clearTimeout(self.isMovingTimeout);
       self.isMovingTimeout = setTimeout(function () {
         mouseDown = false;
@@ -705,7 +693,6 @@ JQVMap.prototype.makeDraggable = function () {
   });
 
   jQuery(this.container).bind('touchmove', function (e) {
-
     var offset;
     var scale;
     var touches = e.originalEvent.touches;
@@ -714,7 +701,6 @@ JQVMap.prototype.makeDraggable = function () {
 
     if (touches.length === 1) {
       if (lastTouchCount === 1) {
-
         if(touchX === touches[0].pageX && touchY === touches[0].pageY){
           return;
         }
@@ -739,9 +725,7 @@ JQVMap.prototype.makeDraggable = function () {
 
       touchX = touches[0].pageX;
       touchY = touches[0].pageY;
-
     } else if (touches.length === 2) {
-
       if (lastTouchCount === 2) {
         scale = Math.sqrt(
             Math.pow(touches[0].pageX - touches[1].pageX, 2) +
@@ -755,9 +739,7 @@ JQVMap.prototype.makeDraggable = function () {
         );
 
         e.preventDefault();
-
       } else {
-
         offset = jQuery(self.container).offset();
         if (touches[0].pageX > touches[1].pageX) {
           touchCenterX = touches[1].pageX + (touches[0].pageX - touches[1].pageX) / 2;
@@ -1259,7 +1241,6 @@ VectorCanvas.prototype.pathSvgToVml = function (path) {
     }
 
     return result;
-
   }).replace(/z/g, '');
 };
 

@@ -17,7 +17,6 @@ namespace JVB.FinancialControl.Data.Mappings
                .HasColumnType("varchar(100)")
                .HasMaxLength(100)
                .IsRequired();
-
         }
     }
 }

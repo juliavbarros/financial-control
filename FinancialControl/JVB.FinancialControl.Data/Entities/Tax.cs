@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace JVB.FinancialControl.Data.Entities
+﻿namespace JVB.FinancialControl.Data.Entities
 {
     public class Tax
     {
@@ -13,11 +11,10 @@ namespace JVB.FinancialControl.Data.Entities
 
         protected Tax()
         { }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public virtual ICollection<Simulation> Simulations { get; set; }
-
-
     }
 }

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace JVB.FinancialControl.Data.Entities
+﻿namespace JVB.FinancialControl.Data.Entities
 {
     public class Simulation
     {
@@ -22,6 +20,7 @@ namespace JVB.FinancialControl.Data.Entities
 
         protected Simulation()
         { }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -37,6 +36,5 @@ namespace JVB.FinancialControl.Data.Entities
         public virtual Project Project { get; set; }
         public virtual Tax Tax { get; set; }
         public virtual User User { get; set; }
-
     }
 }
