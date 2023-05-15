@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace JVB.FinancialControl.Data.Context
 {
-    public class ApplicationDbContext : IdentityDbContext, IUnitOfWork
+    public class ApplicationDbContext : DbContext, IUnitOfWork
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

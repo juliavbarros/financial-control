@@ -124,7 +124,6 @@
             var customerId = $(this).data('id');
             $.ajax({
                 url: "https://localhost:44314/customer-management/customer-history/" + customerId,
-                //url: "http://equinoxproject.azurewebsites.net/customer-management/customer-history/" + customerId,
                 cache: false
             }).done(function(data) {
                 var formatHtml = "<table class='table table-striped'>";
