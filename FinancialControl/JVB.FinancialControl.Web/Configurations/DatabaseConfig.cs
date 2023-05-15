@@ -16,8 +16,6 @@ namespace JVB.FinancialControl.Web.Configurations
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
         }
     }
 }

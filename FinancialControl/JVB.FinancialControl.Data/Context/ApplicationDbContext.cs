@@ -25,6 +25,15 @@ namespace JVB.FinancialControl.Data.Context
                 property.SetColumnType("varchar(100)");
 
             modelBuilder.ApplyConfiguration(new CustomerMap());
+            modelBuilder.ApplyConfiguration(new CurrencyMap());
+            modelBuilder.ApplyConfiguration(new ExpenseMap());
+            modelBuilder.ApplyConfiguration(new ExpenseCategoryMap());
+            modelBuilder.ApplyConfiguration(new ProjectMap());
+            modelBuilder.ApplyConfiguration(new QuotationMap());
+            modelBuilder.ApplyConfiguration(new SimulationMap());
+            modelBuilder.ApplyConfiguration(new TaxMap());
+            modelBuilder.ApplyConfiguration(new UserMap());
+            modelBuilder.ApplyConfiguration(new UserTypeMap());
 
             base.OnModelCreating(modelBuilder);
         }

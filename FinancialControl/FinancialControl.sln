@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JVB.FinancialControl.Domain
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JVB.FinancialControl.Data", "JVB.FinancialControl.Data\JVB.FinancialControl.Data.csproj", "{844DA785-0CF3-4216-B753-2A226F5A868B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JVB.FinancialControl.UI", "JVB.FinancialControl.UI\JVB.FinancialControl.UI.csproj", "{0212E9D4-F4F5-4EC1-8F31-C7DAF6EF5A96}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JVB.FinancialControl.Common", "JVB.FinancialControl.Common\JVB.FinancialControl.Common.csproj", "{A4AA16B1-E1B5-4E54-B393-C7492BA983E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JVB.FinancialControl.Web", "JVB.FinancialControl.Web\JVB.FinancialControl.Web.csproj", "{E929503A-109C-4040-892C-8DE4FA368A0C}"
@@ -33,10 +31,6 @@ Global
 		{844DA785-0CF3-4216-B753-2A226F5A868B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{844DA785-0CF3-4216-B753-2A226F5A868B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{844DA785-0CF3-4216-B753-2A226F5A868B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0212E9D4-F4F5-4EC1-8F31-C7DAF6EF5A96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0212E9D4-F4F5-4EC1-8F31-C7DAF6EF5A96}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0212E9D4-F4F5-4EC1-8F31-C7DAF6EF5A96}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0212E9D4-F4F5-4EC1-8F31-C7DAF6EF5A96}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A4AA16B1-E1B5-4E54-B393-C7492BA983E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A4AA16B1-E1B5-4E54-B393-C7492BA983E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4AA16B1-E1B5-4E54-B393-C7492BA983E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
