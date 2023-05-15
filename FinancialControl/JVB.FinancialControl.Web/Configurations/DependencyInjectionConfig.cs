@@ -5,7 +5,8 @@ using JVB.FinancialControl.Common.Bus;
 using JVB.FinancialControl.Data.Context;
 using JVB.FinancialControl.Data.Interfaces;
 using JVB.FinancialControl.Data.Repository;
-using JVB.FinancialControl.Domain.Commands;
+using JVB.FinancialControl.Domain.Commands.Customers;
+using JVB.FinancialControl.Domain.Commands.Projects;
 using MediatR;
 
 namespace JVB.FinancialControl.Web.Configurations
@@ -21,14 +22,20 @@ namespace JVB.FinancialControl.Web.Configurations
 
             // Application
             services.AddScoped<ICustomerAppService, CustomerAppService>();
+            services.AddScoped<IProjectAppService, ProjectAppService>();
 
             // Domain - Commands
             services.AddScoped<IRequestHandler<RegisterNewCustomerCommand, ValidationResult>, CustomerCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateCustomerCommand, ValidationResult>, CustomerCommandHandler>();
             services.AddScoped<IRequestHandler<RemoveCustomerCommand, ValidationResult>, CustomerCommandHandler>();
 
+            services.AddScoped<IRequestHandler<RegisterNewProjectCommand, ValidationResult>, ProjectCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateProjectCommand, ValidationResult>, ProjectCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveProjectCommand, ValidationResult>, ProjectCommandHandler>();
+
             // Infra - Data
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<ApplicationDbContext>();
         }
     }

@@ -1,6 +1,6 @@
-﻿using JVB.FinancialControl.Domain.Commands.Validations;
+﻿using JVB.FinancialControl.Domain.Commands.Customers.Validations;
 
-namespace JVB.FinancialControl.Domain.Commands
+namespace JVB.FinancialControl.Domain.Commands.Customers
 {
     public class RegisterNewCustomerCommand : CustomerCommand
     {

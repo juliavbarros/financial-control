@@ -9,6 +9,7 @@ namespace JVB.FinancialControl.Application.AutoMapper
         public DomainToViewModelMappingProfile()
         {
             CreateMap<Customer, CustomerViewModel>();
+            CreateMap<Project, ProjectViewModel>();
         }
     }
 }

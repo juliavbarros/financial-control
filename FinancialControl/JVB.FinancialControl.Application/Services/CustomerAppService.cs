@@ -4,7 +4,7 @@ using JVB.FinancialControl.Application.Interfaces;
 using JVB.FinancialControl.Application.ViewModels;
 using JVB.FinancialControl.Common.Bus;
 using JVB.FinancialControl.Data.Interfaces;
-using JVB.FinancialControl.Domain.Commands;
+using JVB.FinancialControl.Domain.Commands.Customers;
 
 namespace JVB.FinancialControl.Application.Services
 {

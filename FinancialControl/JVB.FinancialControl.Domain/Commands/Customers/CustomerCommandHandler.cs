@@ -3,7 +3,7 @@ using JVB.FinancialControl.Data.Entities;
 using JVB.FinancialControl.Data.Interfaces;
 using MediatR;
 
-namespace JVB.FinancialControl.Domain.Commands
+namespace JVB.FinancialControl.Domain.Commands.Customers
 {
     public class CustomerCommandHandler : CommandHandler,
         IRequestHandler<RegisterNewCustomerCommand, ValidationResult>,

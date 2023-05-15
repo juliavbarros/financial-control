@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace JVB.FinancialControl.Domain.Commands.Validations
+namespace JVB.FinancialControl.Domain.Commands.Customers.Validations
 {
     public abstract class CustomerValidation<T> : AbstractValidator<T> where T : CustomerCommand
     {
@@ -24,6 +24,12 @@ namespace JVB.FinancialControl.Domain.Commands.Validations
             RuleFor(c => c.Email)
                 .NotEmpty()
                 .EmailAddress();
+        }
+
+        protected void ValidateId()
+        {
+            RuleFor(c => c.Id)
+                .NotEqual(0);
         }
 
         protected static bool HaveMinimumAge(DateTime birthDate)

@@ -1,4 +1,4 @@
-﻿namespace JVB.FinancialControl.Domain.Commands.Validations
+﻿namespace JVB.FinancialControl.Domain.Commands.Customers.Validations
 {
     public class RegisterNewCustomerCommandValidation : CustomerValidation<RegisterNewCustomerCommand>
     {
