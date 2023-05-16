@@ -1,4 +1,5 @@
 ﻿using JVB.FinancialControl.Web.Models;
+using JVB.FinancialControl.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,14 +8,17 @@ namespace JVB.FinancialControl.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IEcbService _ecbService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IEcbService ecbService)
         {
             _logger = logger;
+            _ecbService = ecbService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
+            //var test = await _ecbService.ConvertCurrency("5000", "EUR", "USD");
             return View();
         }
 

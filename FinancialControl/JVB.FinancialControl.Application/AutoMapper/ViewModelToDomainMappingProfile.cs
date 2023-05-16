@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using JVB.FinancialControl.Application.ViewModels;
+using JVB.FinancialControl.Domain.Commands.Currencies;
 using JVB.FinancialControl.Domain.Commands.Customers;
 using JVB.FinancialControl.Domain.Commands.Projects;
 using JVB.FinancialControl.Domain.Commands.Users;
@@ -26,6 +27,10 @@ namespace JVB.FinancialControl.Application.AutoMapper
             CreateMap<UserTypeViewModel, RegisterNewUserTypeCommand>().ConstructUsing(c => new RegisterNewUserTypeCommand(c.Name));
 
             CreateMap<UserTypeViewModel, UpdateUserTypeCommand>().ConstructUsing(c => new UpdateUserTypeCommand(c.Id, c.Name));
+
+            CreateMap<CurrencyViewModel, RegisterNewCurrencyCommand>().ConstructUsing(c => new RegisterNewCurrencyCommand(c.Name,  c.Code, c.Symbol));
+
+            CreateMap<CurrencyViewModel, UpdateCurrencyCommand>().ConstructUsing(c => new UpdateCurrencyCommand(c.Id, c.Name,  c.Code, c.Symbol));
         }
     }
 }

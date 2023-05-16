@@ -5,10 +5,12 @@ using JVB.FinancialControl.Common.Bus;
 using JVB.FinancialControl.Data.Context;
 using JVB.FinancialControl.Data.Interfaces;
 using JVB.FinancialControl.Data.Repository;
+using JVB.FinancialControl.Domain.Commands.Currencies;
 using JVB.FinancialControl.Domain.Commands.Customers;
 using JVB.FinancialControl.Domain.Commands.Projects;
 using JVB.FinancialControl.Domain.Commands.Users;
 using JVB.FinancialControl.Domain.Commands.UserTypes;
+using JVB.FinancialControl.Web.Services;
 using MediatR;
 
 namespace JVB.FinancialControl.Web.Configurations
@@ -19,6 +21,10 @@ namespace JVB.FinancialControl.Web.Configurations
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
+            //common
+
+            services.AddHttpClient<IEcbService, EcbService>();
+
             //Domain Bus(Mediator)
             services.AddScoped<IMediatorHandler, InMemoryBus>();
 
@@ -27,6 +33,7 @@ namespace JVB.FinancialControl.Web.Configurations
             services.AddScoped<IProjectAppService, ProjectAppService>();
             services.AddScoped<IUserAppService, UserAppService>();
             services.AddScoped<IUserTypeAppService, UserTypeAppService>();
+            services.AddScoped<ICurrencyAppService, CurrencyAppService>();
 
             // Domain - Commands
             services.AddScoped<IRequestHandler<RegisterNewCustomerCommand, ValidationResult>, CustomerCommandHandler>();
@@ -45,11 +52,16 @@ namespace JVB.FinancialControl.Web.Configurations
             services.AddScoped<IRequestHandler<UpdateProjectCommand, ValidationResult>, ProjectCommandHandler>();
             services.AddScoped<IRequestHandler<RemoveProjectCommand, ValidationResult>, ProjectCommandHandler>();
 
+            services.AddScoped<IRequestHandler<RegisterNewCurrencyCommand, ValidationResult>, CurrencyCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateCurrencyCommand, ValidationResult>, CurrencyCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveCurrencyCommand, ValidationResult>, CurrencyCommandHandler>();
+
             // Infra - Data
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserTypeRepository, UserTypeRepository>();
+            services.AddScoped<ICurrencyRepository, CurrencyRepository>();
             services.AddScoped<ApplicationDbContext>();
         }
     }
