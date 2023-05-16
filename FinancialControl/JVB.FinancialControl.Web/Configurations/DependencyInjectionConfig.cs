@@ -7,6 +7,7 @@ using JVB.FinancialControl.Data.Interfaces;
 using JVB.FinancialControl.Data.Repository;
 using JVB.FinancialControl.Domain.Commands.Currencies;
 using JVB.FinancialControl.Domain.Commands.Customers;
+using JVB.FinancialControl.Domain.Commands.ExpenseCategories;
 using JVB.FinancialControl.Domain.Commands.Projects;
 using JVB.FinancialControl.Domain.Commands.Users;
 using JVB.FinancialControl.Domain.Commands.UserTypes;
@@ -34,6 +35,7 @@ namespace JVB.FinancialControl.Web.Configurations
             services.AddScoped<IUserAppService, UserAppService>();
             services.AddScoped<IUserTypeAppService, UserTypeAppService>();
             services.AddScoped<ICurrencyAppService, CurrencyAppService>();
+            services.AddScoped<IExpenseCategoryAppService, ExpenseCategoryAppService>();
 
             // Domain - Commands
             services.AddScoped<IRequestHandler<RegisterNewCustomerCommand, ValidationResult>, CustomerCommandHandler>();
@@ -56,12 +58,17 @@ namespace JVB.FinancialControl.Web.Configurations
             services.AddScoped<IRequestHandler<UpdateCurrencyCommand, ValidationResult>, CurrencyCommandHandler>();
             services.AddScoped<IRequestHandler<RemoveCurrencyCommand, ValidationResult>, CurrencyCommandHandler>();
 
+            services.AddScoped<IRequestHandler<RegisterNewExpenseCategoryCommand, ValidationResult>, ExpenseCategoryCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateExpenseCategoryCommand, ValidationResult>, ExpenseCategoryCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveExpenseCategoryCommand, ValidationResult>, ExpenseCategoryCommandHandler>();
+
             // Infra - Data
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserTypeRepository, UserTypeRepository>();
             services.AddScoped<ICurrencyRepository, CurrencyRepository>();
+            services.AddScoped<IExpenseCategoryRepository, ExpenseCategoryRepository>();
             services.AddScoped<ApplicationDbContext>();
         }
     }

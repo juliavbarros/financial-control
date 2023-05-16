@@ -2,6 +2,7 @@
 using JVB.FinancialControl.Application.ViewModels;
 using JVB.FinancialControl.Domain.Commands.Currencies;
 using JVB.FinancialControl.Domain.Commands.Customers;
+using JVB.FinancialControl.Domain.Commands.ExpenseCategories;
 using JVB.FinancialControl.Domain.Commands.Projects;
 using JVB.FinancialControl.Domain.Commands.Users;
 using JVB.FinancialControl.Domain.Commands.UserTypes;
@@ -31,6 +32,10 @@ namespace JVB.FinancialControl.Application.AutoMapper
             CreateMap<CurrencyViewModel, RegisterNewCurrencyCommand>().ConstructUsing(c => new RegisterNewCurrencyCommand(c.Name,  c.Code, c.Symbol));
 
             CreateMap<CurrencyViewModel, UpdateCurrencyCommand>().ConstructUsing(c => new UpdateCurrencyCommand(c.Id, c.Name,  c.Code, c.Symbol));
+
+            CreateMap<ExpenseCategoryViewModel, RegisterNewExpenseCategoryCommand>().ConstructUsing(c => new RegisterNewExpenseCategoryCommand(c.Name));
+
+            CreateMap<ExpenseCategoryViewModel, UpdateExpenseCategoryCommand>().ConstructUsing(c => new UpdateExpenseCategoryCommand(c.Id, c.Name));
         }
     }
 }

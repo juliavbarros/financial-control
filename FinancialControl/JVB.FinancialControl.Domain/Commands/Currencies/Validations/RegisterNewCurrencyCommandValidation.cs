@@ -1,7 +1,6 @@
 ﻿using JVB.FinancialControl.Domain.Commands.Currencies;
-using JVB.FinancialControl.Domain.Commands.Currencies.Validations;
 
-namespace JVB.FinancialControl.Domain.Commands.Projects.Validations
+namespace JVB.FinancialControl.Domain.Commands.Currencies.Validations
 {
     public class RegisterNewCurrencyCommandValidation : CurrencyValidation<RegisterNewCurrencyCommand>
     {

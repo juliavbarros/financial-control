@@ -1,4 +1,4 @@
-﻿using JVB.FinancialControl.Domain.Commands.Projects.Validations;
+﻿using JVB.FinancialControl.Domain.Commands.Currencies.Validations;
 
 namespace JVB.FinancialControl.Domain.Commands.Currencies
 {
