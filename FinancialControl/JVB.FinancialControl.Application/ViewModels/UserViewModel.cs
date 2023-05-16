@@ -54,6 +54,7 @@ namespace JVB.FinancialControl.Application.ViewModels
         [Required(ErrorMessage = "The UserTypeId is Required")]
         [DisplayName("Tipo Usuário")]
         public int UserTypeId { get; set; }
+
         public string UsertTypeName { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace JVB.FinancialControl.Data.Interfaces
         Task<IEnumerable<User>> GetAll();
 
         Task<User> GetByUserName(string userName);
+
         Task<User> GetByEmail(string email);
 
         void Add(User user);

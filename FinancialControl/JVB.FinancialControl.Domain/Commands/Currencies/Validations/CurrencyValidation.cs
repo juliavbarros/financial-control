@@ -11,13 +11,13 @@ namespace JVB.FinancialControl.Domain.Commands.Currencies.Validations
                 .Length(2, 150).WithMessage("The Name must have between 2 and 150 characters");
         }
 
-
         protected void ValidateCode()
         {
             RuleFor(c => c.Code)
                 .NotEmpty().WithMessage("Please ensure you have entered the Code")
                 .Length(2, 3).WithMessage("The Code must have between 2 and 3 characters");
         }
+
         protected void ValidateSymbol()
         {
             RuleFor(c => c.Symbol)

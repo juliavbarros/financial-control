@@ -18,7 +18,6 @@ namespace JVB.FinancialControl.Domain.Commands.Users
             UserTypeId = userTypeId;
         }
 
-
         public override bool IsValid()
         {
             ValidationResult = new UpdateUserCommandValidation().Validate(this);

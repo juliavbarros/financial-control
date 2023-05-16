@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace JVB.FinancialControl.Web.Models.Ecb
 {

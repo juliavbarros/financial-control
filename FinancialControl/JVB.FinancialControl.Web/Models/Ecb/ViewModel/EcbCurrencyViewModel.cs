@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace JVB.FinancialControl.Web.Models.Ecb.ViewModel
+﻿namespace JVB.FinancialControl.Web.Models.Ecb.ViewModel
 {
     public class EcbCurrencyViewModel
     {

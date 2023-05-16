@@ -21,7 +21,7 @@ namespace JVB.FinancialControl.Domain.Commands.Currencies
         {
             if (!message.IsValid()) return message.ValidationResult;
 
-            var currency = new Currency(0, message.Name,  message.Code, message.Symbol);
+            var currency = new Currency(0, message.Name, message.Code, message.Symbol);
 
             if (await _currencyRepository.GetByCode(currency.Code) != null)
             {
@@ -38,7 +38,7 @@ namespace JVB.FinancialControl.Domain.Commands.Currencies
         {
             if (!message.IsValid()) return message.ValidationResult;
 
-            var currency = new Currency(message.Id, message.Name,message.Code, message.Symbol);
+            var currency = new Currency(message.Id, message.Name, message.Code, message.Symbol);
 
             var existingCurrency = await _currencyRepository.GetByCode(currency.Code);
 

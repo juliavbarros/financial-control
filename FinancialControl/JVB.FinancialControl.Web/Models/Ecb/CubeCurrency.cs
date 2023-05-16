@@ -7,6 +7,7 @@ namespace JVB.FinancialControl.Web.Models.Ecb
     {
         [XmlAttribute(AttributeName = "currency")]
         public string Currency { get; set; }
+
         [XmlAttribute(AttributeName = "rate")]
         public string Rate { get; set; }
     }

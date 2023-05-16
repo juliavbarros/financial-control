@@ -78,7 +78,6 @@ namespace JVB.FinancialControl.Web.Controllers
                 return View(currencyViewModel);
 
             return RedirectToAction("Index");
-
         }
 
         [AllowAnonymous]

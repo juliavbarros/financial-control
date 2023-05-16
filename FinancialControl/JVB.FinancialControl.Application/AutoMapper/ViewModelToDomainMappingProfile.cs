@@ -30,9 +30,9 @@ namespace JVB.FinancialControl.Application.AutoMapper
 
             CreateMap<UserTypeViewModel, UpdateUserTypeCommand>().ConstructUsing(c => new UpdateUserTypeCommand(c.Id, c.Name));
 
-            CreateMap<CurrencyViewModel, RegisterNewCurrencyCommand>().ConstructUsing(c => new RegisterNewCurrencyCommand(c.Name,  c.Code, c.Symbol));
+            CreateMap<CurrencyViewModel, RegisterNewCurrencyCommand>().ConstructUsing(c => new RegisterNewCurrencyCommand(c.Name, c.Code, c.Symbol));
 
-            CreateMap<CurrencyViewModel, UpdateCurrencyCommand>().ConstructUsing(c => new UpdateCurrencyCommand(c.Id, c.Name,  c.Code, c.Symbol));
+            CreateMap<CurrencyViewModel, UpdateCurrencyCommand>().ConstructUsing(c => new UpdateCurrencyCommand(c.Id, c.Name, c.Code, c.Symbol));
 
             CreateMap<ExpenseCategoryViewModel, RegisterNewExpenseCategoryCommand>().ConstructUsing(c => new RegisterNewExpenseCategoryCommand(c.Name));
 

@@ -11,7 +11,6 @@ namespace JVB.FinancialControl.Domain.Commands.Projects
             Description = description;
         }
 
-
         public override bool IsValid()
         {
             ValidationResult = new UpdateProjectCommandValidation().Validate(this);

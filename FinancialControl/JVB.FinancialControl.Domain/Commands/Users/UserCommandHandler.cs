@@ -39,7 +39,7 @@ namespace JVB.FinancialControl.Domain.Commands.Users
             if (!message.IsValid()) return message.ValidationResult;
 
             var user = new User(message.Id, message.Username, message.Password, message.Email, message.FirstName, message.LastName, message.BirthDate, message.GrossSalary, message.NetSalary, message.UserTypeId);
-            
+
             var existingUser = await _userRepository.GetByEmail(user.Email);
 
             if (existingUser != null && existingUser.Id != user.Id)

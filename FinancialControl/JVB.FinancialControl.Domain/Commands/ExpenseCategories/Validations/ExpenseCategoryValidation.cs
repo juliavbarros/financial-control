@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using JVB.FinancialControl.Domain.Commands.ExpenseCategories;
 
 namespace JVB.FinancialControl.Domain.Commands.ExpenseCategories.Validations
 {

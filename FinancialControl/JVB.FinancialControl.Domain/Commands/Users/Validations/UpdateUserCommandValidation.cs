@@ -1,6 +1,4 @@
-﻿using JVB.FinancialControl.Domain.Commands.Users;
-
-namespace JVB.FinancialControl.Domain.Commands.Users.Validations
+﻿namespace JVB.FinancialControl.Domain.Commands.Users.Validations
 {
     public class UpdateUserCommandValidation : UserValidation<UpdateUserCommand>
     {

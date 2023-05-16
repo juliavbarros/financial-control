@@ -17,12 +17,14 @@ namespace JVB.FinancialControl.Domain.Commands.Users.Validations
                 .NotEmpty().WithMessage("Please ensure you have entered the Password")
                 .Length(2, 10).WithMessage("The Name must have between 2 and 150 characters");
         }
+
         protected void ValidateFirstName()
         {
             RuleFor(c => c.FirstName)
                 .NotEmpty().WithMessage("Please ensure you have entered the First Name")
                 .Length(2, 50).WithMessage("The Name must have between 2 and 150 characters");
         }
+
         protected void ValidateLastName()
         {
             RuleFor(c => c.LastName)

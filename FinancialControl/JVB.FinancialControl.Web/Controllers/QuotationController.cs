@@ -1,6 +1,3 @@
-using JVB.FinancialControl.Application.Interfaces;
-using JVB.FinancialControl.Application.ViewModels;
-using JVB.FinancialControl.Web.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +14,6 @@ namespace JVB.FinancialControl.Web.Controllers
         //{
         //    _ecbService = ecbService;
         //}
-
 
         //[AllowAnonymous]
         //[HttpGet("Index")]
