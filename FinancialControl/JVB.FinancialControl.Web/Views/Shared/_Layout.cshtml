@@ -32,9 +32,9 @@
     <div class="wrapper">
 
         <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-        </div>
+       @* <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="~/adminlte/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+        </div>*@
 
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -99,50 +99,43 @@
                                 <i class="nav-icon fas fa-th"></i> <p>Cotações</p>
                             </a>
                         </li>
-
+                        <hr />
+                        <li class="nav-header">ADMINISTRADOR</li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-edit"></i>
-                                <p>Admin<i class="fas fa-angle-left right"></i></p>
+                            <a asp-controller="User" asp-action="Index" class="nav-link">
+                                <i class="far fa-circle nav-icon text-danger"></i>
+                                <p>Usuários</p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="pages/forms/general.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Usuários</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/forms/advanced.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Tipos de Usuário</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/forms/editors.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Moeda</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/forms/validation.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Categoria Despesas</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-controller="Project" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Projetos</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/forms/validation.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Taxas</p>
-                                    </a>
-                                </li>
-                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="UserType" asp-action="Index" class="nav-link">
+                                <i class="far fa-circle nav-icon text-danger"></i>
+                                <p>Tipos de Usuário</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/forms/editors.html" class="nav-link">
+                                <i class="far fa-circle nav-icon text-danger"></i>
+                                <p>Moeda</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/forms/validation.html" class="nav-link">
+                                <i class="far fa-circle nav-icon text-danger"></i>
+                                <p>Categoria Despesas</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Project" asp-action="Index" class="nav-link">
+                                <i class="far fa-circle nav-icon text-danger"></i>
+                                <p>Projetos</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/forms/validation.html" class="nav-link">
+                                <i class="far fa-circle nav-icon text-danger"></i>
+                                <p>Taxas</p>
+                            </a>
                         </li>
                     </ul>
 
@@ -203,10 +196,10 @@
     <script src="~/adminlte/plugins/overlayscrollbars/jquery.overlayscrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="~/adminlte/js/adminlte.js"></script>
-    <!-- AdminLTE for demo purposes -->
+@*    <!-- AdminLTE for demo purposes -->
     <script src="~/adminlte/plugins/demo/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="~/adminlte/plugins/demo/dashboard.js"></script>
+    <script src="~/adminlte/plugins/demo/dashboard.js"></script>*@
  
     
     @await RenderSectionAsync("Scripts", required: false)

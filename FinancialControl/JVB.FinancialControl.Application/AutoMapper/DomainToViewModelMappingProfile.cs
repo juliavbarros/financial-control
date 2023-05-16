@@ -10,6 +10,9 @@ namespace JVB.FinancialControl.Application.AutoMapper
         {
             CreateMap<Customer, CustomerViewModel>();
             CreateMap<Project, ProjectViewModel>();
+            CreateMap<User, UserViewModel>()
+                .ForMember(dest=> dest.UsertTypeName, opt => opt.MapFrom(src => src.UserType.Name));
+            CreateMap<UserType, UserTypeViewModel>();
         }
     }
 }

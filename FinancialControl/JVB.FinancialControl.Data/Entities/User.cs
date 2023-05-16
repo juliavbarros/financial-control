@@ -2,7 +2,7 @@
 {
     public class User
     {
-        public User(int id, string username, string password, string email, string firstName, string lastName, int age, decimal grossSalary, decimal netSalary, int userTypeId)
+        public User(int id, string username, string password, string email, string firstName, string lastName, DateTime birthDate, decimal grossSalary, decimal netSalary, int userTypeId)
         {
             Id = id;
             Username = username;
@@ -10,7 +10,7 @@
             Email = email;
             FirstName = firstName;
             LastName = lastName;
-            Age = age;
+            BirthDate = birthDate;
             GrossSalary = grossSalary;
             NetSalary = netSalary;
             UserTypeId = userTypeId;
@@ -25,7 +25,7 @@
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Age { get; set; }
+        public DateTime BirthDate { get; set; }
         public decimal GrossSalary { get; set; }
         public decimal NetSalary { get; set; }
         public int UserTypeId { get; set; }

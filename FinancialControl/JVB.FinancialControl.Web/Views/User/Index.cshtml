@@ -1,7 +1,7 @@
-@model IEnumerable<JVB.FinancialControl.Application.ViewModels.ProjectViewModel>
+@model IEnumerable<JVB.FinancialControl.Application.ViewModels.UserViewModel>
 
 @{
-    ViewData["Title"] = "Gerenciar Projeto";
+    ViewData["Title"] = "Gerenciar Usuarios";
 }
 <style>
     .modal-lg {
@@ -32,7 +32,7 @@
                 <div>
                     <div class="pull-left">
                         <a asp-action="Create" class="btn btn-primary">
-                            <span title="Novo Projeto" class="fas fa-plus"></span> Novo
+                            <span title="Novo Usuario" class="fas fa-plus"></span> Novo
                         </a>
                     </div>
                 </div>
@@ -45,8 +45,15 @@
                 <table id="projectDatatable" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>@Html.DisplayNameFor(model => model.Name)</th>
-                            <th>@Html.DisplayNameFor(model => model.Description)</th>
+                            <th>@Html.DisplayNameFor(model => model.Username)</th>
+                            <th>@Html.DisplayNameFor(model => model.Password)</th>
+                            <th>@Html.DisplayNameFor(model => model.Email)</th>
+                            <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                            <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                            <th>@Html.DisplayNameFor(model => model.BirthDate)</th>
+                            <th>@Html.DisplayNameFor(model => model.GrossSalary)</th>
+                            <th>@Html.DisplayNameFor(model => model.NetSalary)</th>
+                            <th>@Html.DisplayNameFor(model => model.UserTypeId)</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -54,12 +61,15 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Description)
-                                </td>
+                                <td>@Html.DisplayFor(modelItem => item.Username)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Password)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.BirthDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.GrossSalary)</td>
+                                <td>@Html.DisplayFor(modelItem => item.NetSalary)</td>
+                                <td>@Html.DisplayFor(modelItem => item.UsertTypeName)</td>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" class="btn btn-warning"><span class="fas fa-edit"></span></a>
                                     <a asp-action="Delete" asp-route-id="@item.Id" title="Delete" class="btn btn-danger"><span class="fas fa-trash-alt"></span></a>
@@ -79,10 +89,6 @@
     <!-- DataTables  & Plugins -->
     <script src="~/adminlte/plugins/datatable/jquery.datatables.min.js"></script>
     <script src="~/adminlte/plugins/datatable/datatables.bootstrap4.min.js"></script>
- @*   <script src="~/adminlte/plugins/datatable/datatables.responsive.min.js"></script>
-    <script src="~/adminlte/plugins/datatable/responsive.bootstrap4.min.js"></script>
-    <script src="~/adminlte/plugins/datatable/datatables.buttons.min.js"></script>
-    <script src="~/adminlte/plugins/datatable/buttons.bootstrap4.min.js"></script*@>
 
     <script>
         $(function () {
@@ -94,7 +100,6 @@
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
-                //"dom": '<lf<t>ip>'
             });
         });
     </script>

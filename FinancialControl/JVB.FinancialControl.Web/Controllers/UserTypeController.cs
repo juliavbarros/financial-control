@@ -7,20 +7,20 @@ namespace JVB.FinancialControl.Web.Controllers
 {
     [Authorize]
     [Route("[controller]")]
-    public class ProjectController : BaseController
+    public class UserTypeController : BaseController
     {
-        private readonly IProjectAppService _projectAppService;
+        private readonly IUserTypeAppService _userTypeAppService;
 
-        public ProjectController(IProjectAppService projectAppService)
+        public UserTypeController(IUserTypeAppService userTypeAppService)
         {
-            _projectAppService = projectAppService;
+            _userTypeAppService = userTypeAppService;
         }
 
         [AllowAnonymous]
         [HttpGet("Index")]
         public async Task<IActionResult> Index()
         {
-            return View(await _projectAppService.GetAll());
+            return View(await _userTypeAppService.GetAll());
         }
 
         [AllowAnonymous]
@@ -29,7 +29,7 @@ namespace JVB.FinancialControl.Web.Controllers
         {
             if (id == null) return NotFound();
 
-            var customerViewModel = await _projectAppService.GetById(id.Value);
+            var customerViewModel = await _userTypeAppService.GetById(id.Value);
 
             if (customerViewModel == null) return NotFound();
 
@@ -45,12 +45,12 @@ namespace JVB.FinancialControl.Web.Controllers
 
         [AllowAnonymous]
         [HttpPost("Create")]
-        public async Task<IActionResult> Create(ProjectViewModel projectViewModel)
+        public async Task<IActionResult> Create(UserTypeViewModel userTypeViewModel)
         {
-            if (!ModelState.IsValid) return View(projectViewModel);
+            if (!ModelState.IsValid) return View(userTypeViewModel);
 
-            if (ResponseHasErrors(await _projectAppService.Register(projectViewModel)))
-                return View(projectViewModel);
+            if (ResponseHasErrors(await _userTypeAppService.Register(userTypeViewModel)))
+                return View(userTypeViewModel);
 
             return RedirectToAction("Index");
         }
@@ -61,7 +61,7 @@ namespace JVB.FinancialControl.Web.Controllers
         {
             if (id == null) return NotFound();
 
-            var customerViewModel = await _projectAppService.GetById(id.Value);
+            var customerViewModel = await _userTypeAppService.GetById(id.Value);
 
             if (customerViewModel == null) return NotFound();
 
@@ -70,15 +70,14 @@ namespace JVB.FinancialControl.Web.Controllers
 
         [AllowAnonymous]
         [HttpPost("Edit")]
-        public async Task<IActionResult> Edit(ProjectViewModel projectViewModel)
+        public async Task<IActionResult> Edit(UserTypeViewModel userTypeViewModel)
         {
-            if (!ModelState.IsValid) return View(projectViewModel);
+            if (!ModelState.IsValid) return View(userTypeViewModel);
 
-            if (ResponseHasErrors(await _projectAppService.Update(projectViewModel)))
-                return View(projectViewModel);
+            if (ResponseHasErrors(await _userTypeAppService.Update(userTypeViewModel)))
+                return View(userTypeViewModel);
 
             return RedirectToAction("Index");
-
         }
 
         [AllowAnonymous]
@@ -87,19 +86,19 @@ namespace JVB.FinancialControl.Web.Controllers
         {
             if (id == null) return NotFound();
 
-            var projectViewModel = await _projectAppService.GetById(id.Value);
+            var userTypeViewModel = await _userTypeAppService.GetById(id.Value);
 
-            if (projectViewModel == null) return NotFound();
+            if (userTypeViewModel == null) return NotFound();
 
-            return View(projectViewModel);
+            return View(userTypeViewModel);
         }
 
         [AllowAnonymous]
         [HttpPost("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (ResponseHasErrors(await _projectAppService.Remove(id)))
-                return View(await _projectAppService.GetById(id));
+            if (ResponseHasErrors(await _userTypeAppService.Remove(id)))
+                return View(await _userTypeAppService.GetById(id));
 
             ViewBag.Sucesso = "Projeto removido!";
             return RedirectToAction("Index");

@@ -1,0 +1,121 @@
+@model JVB.FinancialControl.Application.ViewModels.UserViewModel
+
+@{
+    ViewData["Title"] = "Novo Usuario";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">@ViewData["Title"]</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <form asp-action="Create">
+                <div class="card-body">
+                    <div class="card-body">
+
+                        <vc:summary />
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label asp-for="Username" class="col-md-2 control-label"></label>
+                                    <div class="col-md-10">
+                                        <input asp-for="Username" class="form-control" />
+                                        <span asp-validation-for="Username" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Email" class="col-md-2 control-label"></label>
+                                    <div class="col-md-10">
+                                        <input asp-for="Email" type="email" class="form-control" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="FirstName" class="col-md-2 control-label"></label>
+                                    <div class="col-md-10">
+                                        <input asp-for="FirstName" class="form-control" />
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="GrossSalary" class="col-md-2 control-label"></label>
+                                    <div class="col-md-10">
+                                        <input asp-for="GrossSalary" class="form-control" />
+                                        <span asp-validation-for="GrossSalary" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="UserTypeId" class="col-md-2 control-label"></label>
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("UserTypeId", new SelectList(ViewBag.UserTypeList, "Id", "Name"),  new {@class="form-control"})
+                                        <span asp-validation-for="UserTypeId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label asp-for="Password" class="col-md-2 control-label"></label>
+                                    <div class="col-md-10">
+                                        <input asp-for="Password" class="form-control" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="BirthDate" class="col-md-2 control-label"></label>
+                                    <div class="col-md-10">
+                                        <input asp-for="BirthDate" class="form-control" />
+                                        <span asp-validation-for="BirthDate" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="LastName" class="col-md-2 control-label"></label>
+                                    <div class="col-md-10">
+                                        <input asp-for="LastName" class="form-control" />
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="NetSalary" class="col-md-2 control-label"></label>
+                                    <div class="col-md-10">
+                                        <input asp-for="NetSalary" class="form-control" />
+                                        <span asp-validation-for="NetSalary" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Inserir" class="btn btn-primary" />
+                            <a asp-action="Index" class="btn btn-info">Voltar</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
