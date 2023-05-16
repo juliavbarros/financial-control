@@ -14,6 +14,7 @@ namespace JVB.FinancialControl.Application.AutoMapper
             CreateMap<UserType, UserTypeViewModel>();
             CreateMap<Currency, CurrencyViewModel>();
             CreateMap<ExpenseCategory, ExpenseCategoryViewModel>();
+            CreateMap<Tax, TaxViewModel>();
         }
     }
 }

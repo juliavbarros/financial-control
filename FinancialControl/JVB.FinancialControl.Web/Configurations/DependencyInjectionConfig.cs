@@ -9,6 +9,7 @@ using JVB.FinancialControl.Domain.Commands.Currencies;
 using JVB.FinancialControl.Domain.Commands.Customers;
 using JVB.FinancialControl.Domain.Commands.ExpenseCategories;
 using JVB.FinancialControl.Domain.Commands.Projects;
+using JVB.FinancialControl.Domain.Commands.Taxes;
 using JVB.FinancialControl.Domain.Commands.Users;
 using JVB.FinancialControl.Domain.Commands.UserTypes;
 using JVB.FinancialControl.Web.Services;
@@ -36,6 +37,7 @@ namespace JVB.FinancialControl.Web.Configurations
             services.AddScoped<IUserTypeAppService, UserTypeAppService>();
             services.AddScoped<ICurrencyAppService, CurrencyAppService>();
             services.AddScoped<IExpenseCategoryAppService, ExpenseCategoryAppService>();
+            services.AddScoped<ITaxAppService, TaxAppService>();
 
             // Domain - Commands
             services.AddScoped<IRequestHandler<RegisterNewCustomerCommand, ValidationResult>, CustomerCommandHandler>();
@@ -62,6 +64,10 @@ namespace JVB.FinancialControl.Web.Configurations
             services.AddScoped<IRequestHandler<UpdateExpenseCategoryCommand, ValidationResult>, ExpenseCategoryCommandHandler>();
             services.AddScoped<IRequestHandler<RemoveExpenseCategoryCommand, ValidationResult>, ExpenseCategoryCommandHandler>();
 
+            services.AddScoped<IRequestHandler<RegisterNewTaxCommand, ValidationResult>, TaxCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateTaxCommand, ValidationResult>, TaxCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveTaxCommand, ValidationResult>, TaxCommandHandler>();
+
             // Infra - Data
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
@@ -69,6 +75,7 @@ namespace JVB.FinancialControl.Web.Configurations
             services.AddScoped<IUserTypeRepository, UserTypeRepository>();
             services.AddScoped<ICurrencyRepository, CurrencyRepository>();
             services.AddScoped<IExpenseCategoryRepository, ExpenseCategoryRepository>();
+            services.AddScoped<ITaxRepository, TaxRepository>();
             services.AddScoped<ApplicationDbContext>();
         }
     }
