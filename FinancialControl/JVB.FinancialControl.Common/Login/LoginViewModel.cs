@@ -10,7 +10,6 @@ namespace JVB.FinancialControl.Common.Login
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        public string ReturnUrl { get; set; }
         public bool RememberLogin { get; set; }
     }
 }

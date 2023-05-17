@@ -32,8 +32,8 @@
     <div class="wrapper">
 
         <!-- Preloader -->
-       @* <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="~/adminlte/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+        @* <div class="preloader flex-column justify-content-center align-items-center">
+        <img class="animation__shake" src="~/adminlte/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
         </div>*@
 
         <!-- Navbar -->
@@ -49,7 +49,7 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
                 </li>
-               
+
             </ul>
 
             <!-- Right navbar links -->
@@ -63,7 +63,7 @@
                     <a asp-area="" asp-controller="Account" asp-action="Logout" class="nav-link">Logout</a>
                 </li>
             </ul>
-          
+
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
@@ -87,6 +87,7 @@
                 </div>
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
+                   
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
                             <a asp-controller="Expense" asp-action="Index" class="nav-link">
@@ -104,43 +105,47 @@
                             </a>
                         </li>
                         <hr />
-                        <li class="nav-header">ADMINISTRADOR</li>
-                        <li class="nav-item">
-                            <a asp-controller="User" asp-action="Index" class="nav-link">
-                                <i class="far fa-circle nav-icon text-danger"></i>
-                                <p>Usuários</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-controller="UserType" asp-action="Index" class="nav-link">
-                                <i class="far fa-circle nav-icon text-danger"></i>
-                                <p>Tipos de Usuário</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-controller="Currency" asp-action="Index" class="nav-link">
-                                <i class="far fa-circle nav-icon text-danger"></i>
-                                <p>Moeda</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-controller="ExpenseCategory" asp-action="Index" class="nav-link">
-                                <i class="far fa-circle nav-icon text-danger"></i>
-                                <p>Categoria Despesas</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-controller="Project" asp-action="Index" class="nav-link">
-                                <i class="far fa-circle nav-icon text-danger"></i>
-                                <p>Projetos</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-controller="Tax" asp-action="Index" class="nav-link">
-                                <i class="far fa-circle nav-icon text-danger"></i>
-                                <p>Taxas</p>
-                            </a>
-                        </li>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-header">ADMINISTRADOR</li>
+                            <li class="nav-item">
+                                <a asp-controller="User" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon text-danger"></i>
+                                    <p>Usuários</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="UserType" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon text-danger"></i>
+                                    <p>Tipos de Usuário</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Currency" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon text-danger"></i>
+                                    <p>Moeda</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="ExpenseCategory" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon text-danger"></i>
+                                    <p>Categoria Despesas</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Project" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon text-danger"></i>
+                                    <p>Projetos</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Tax" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon text-danger"></i>
+                                    <p>Taxas</p>
+                                </a>
+                            </li>
+                        }
                     </ul>
 
                 </nav>
@@ -200,12 +205,12 @@
     <script src="~/adminlte/plugins/overlayscrollbars/jquery.overlayscrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="~/adminlte/js/adminlte.js"></script>
-@*    <!-- AdminLTE for demo purposes -->
+    @*    <!-- AdminLTE for demo purposes -->
     <script src="~/adminlte/plugins/demo/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="~/adminlte/plugins/demo/dashboard.js"></script>*@
- 
-    
+
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

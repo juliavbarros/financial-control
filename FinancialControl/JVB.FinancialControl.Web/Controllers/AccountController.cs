@@ -18,11 +18,9 @@ namespace JVB.FinancialControl.Web.Controllers
             _accountAppService = accountAppService;
         }
 
-        public IActionResult Login(string returnUrl = "/")
+        public IActionResult Login()
         {
-            LoginViewModel loginModel = new LoginViewModel();
-            loginModel.ReturnUrl = returnUrl;
-            return View(loginModel);
+            return View(new LoginViewModel());
         }
 
         [AllowAnonymous]
@@ -53,7 +51,7 @@ namespace JVB.FinancialControl.Web.Controllers
             }
             else
             {
-                ViewBag.ErrorMessage = "Credenciais Inválidas";
+                ModelState.AddModelError("LoginError", "Usuário ou senha incorreta.");
                 return View(loginViewModel);
             }
         }
