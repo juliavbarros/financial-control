@@ -4,6 +4,7 @@ using JVB.FinancialControl.Domain.Commands.Currencies;
 using JVB.FinancialControl.Domain.Commands.Customers;
 using JVB.FinancialControl.Domain.Commands.ExpenseCategories;
 using JVB.FinancialControl.Domain.Commands.Projects;
+using JVB.FinancialControl.Domain.Commands.Quotations;
 using JVB.FinancialControl.Domain.Commands.Taxes;
 using JVB.FinancialControl.Domain.Commands.Users;
 using JVB.FinancialControl.Domain.Commands.UserTypes;
@@ -41,6 +42,8 @@ namespace JVB.FinancialControl.Application.AutoMapper
             CreateMap<TaxViewModel, RegisterNewTaxCommand>().ConstructUsing(c => new RegisterNewTaxCommand(c.Name, c.Description));
 
             CreateMap<TaxViewModel, UpdateTaxCommand>().ConstructUsing(c => new UpdateTaxCommand(c.Id, c.Name, c.Description));
+
+            CreateMap<QuotationViewModel, RegisterNewQuotationCommand>().ConstructUsing(c => new RegisterNewQuotationCommand(c.Description, c.InitialValue, c.ConvertedValue, c.QuotationDate, c.FromCurrencyId, c.ToCurrencyId, c.UserId));
         }
     }
 }

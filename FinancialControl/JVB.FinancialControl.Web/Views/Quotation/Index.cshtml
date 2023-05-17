@@ -1,0 +1,77 @@
+@model IEnumerable<JVB.FinancialControl.Application.ViewModels.QuotationViewModel>
+
+@{
+    ViewData["Title"] = "Cotacoes";
+}
+
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">@ViewData["Title"]</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <table id="userTypeDatatable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Description)</th>
+                            <th>@Html.DisplayNameFor(model => model.InitialValue)</th>
+                            <th>@Html.DisplayNameFor(model => model.ConvertedValue)</th>
+                            <th>@Html.DisplayNameFor(model => model.QuotationDate)</th>
+                            <th>@Html.DisplayNameFor(model => model.FromCurrencyName)</th>
+                            <th>@Html.DisplayNameFor(model => model.ToCurrencyName)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                <td>@Html.DisplayFor(modelItem => item.InitialValue)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ConvertedValue)</td>
+                                <td>@Html.DisplayFor(modelItem => item.QuotationDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.FromCurrencyName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ToCurrencyName)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scripts
+    {
+    <script src="~/adminlte/plugins/datatable/jquery.datatables.min.js"></script>
+    <script src="~/adminlte/plugins/datatable/datatables.bootstrap4.min.js"></script>
+
+    <script>
+        $(function () {
+            $('#userTypeDatatable').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+}

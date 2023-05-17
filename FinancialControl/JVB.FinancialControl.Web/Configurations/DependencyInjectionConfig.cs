@@ -9,6 +9,7 @@ using JVB.FinancialControl.Domain.Commands.Currencies;
 using JVB.FinancialControl.Domain.Commands.Customers;
 using JVB.FinancialControl.Domain.Commands.ExpenseCategories;
 using JVB.FinancialControl.Domain.Commands.Projects;
+using JVB.FinancialControl.Domain.Commands.Quotations;
 using JVB.FinancialControl.Domain.Commands.Taxes;
 using JVB.FinancialControl.Domain.Commands.Users;
 using JVB.FinancialControl.Domain.Commands.UserTypes;
@@ -39,6 +40,7 @@ namespace JVB.FinancialControl.Web.Configurations
             services.AddScoped<IExpenseCategoryAppService, ExpenseCategoryAppService>();
             services.AddScoped<ITaxAppService, TaxAppService>();
             services.AddScoped<IAccountAppService, AccountAppService>();
+            services.AddScoped<IQuotationAppService, QuotationAppService>();
 
             // Domain - Commands
             services.AddScoped<IRequestHandler<RegisterNewCustomerCommand, ValidationResult>, CustomerCommandHandler>();
@@ -69,6 +71,8 @@ namespace JVB.FinancialControl.Web.Configurations
             services.AddScoped<IRequestHandler<UpdateTaxCommand, ValidationResult>, TaxCommandHandler>();
             services.AddScoped<IRequestHandler<RemoveTaxCommand, ValidationResult>, TaxCommandHandler>();
 
+            services.AddScoped<IRequestHandler<RegisterNewQuotationCommand, ValidationResult>, QuotationCommandHandler>();
+
             // Infra - Data
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
@@ -78,6 +82,7 @@ namespace JVB.FinancialControl.Web.Configurations
             services.AddScoped<IExpenseCategoryRepository, ExpenseCategoryRepository>();
             services.AddScoped<ITaxRepository, TaxRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IQuotationRepository, QuotationRepository>();
             services.AddScoped<ApplicationDbContext>();
         }
     }
