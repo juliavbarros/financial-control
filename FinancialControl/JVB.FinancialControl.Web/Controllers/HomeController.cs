@@ -1,5 +1,7 @@
-﻿using JVB.FinancialControl.Web.Models;
+﻿using JVB.FinancialControl.Common.Login;
+using JVB.FinancialControl.Web.Models;
 using JVB.FinancialControl.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -16,7 +18,7 @@ namespace JVB.FinancialControl.Web.Controllers
             _ecbService = ecbService;
         }
 
-        public async Task<IActionResult> IndexAsync()
+        public IActionResult Index()
         {
             //var test = await _ecbService.ConvertCurrency("5000", "EUR", "USD");
             return View();
@@ -31,6 +33,15 @@ namespace JVB.FinancialControl.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [AllowAnonymous]
+        [HttpGet("Login")]
+        public async Task<IActionResult> Login(string returnUrl = "/")
+        {
+            LoginViewModel loginModel = new LoginViewModel();
+            loginModel.ReturnUrl = returnUrl;
+            return View(loginModel);
         }
     }
 }

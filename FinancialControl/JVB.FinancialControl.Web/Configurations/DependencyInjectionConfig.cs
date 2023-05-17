@@ -38,6 +38,7 @@ namespace JVB.FinancialControl.Web.Configurations
             services.AddScoped<ICurrencyAppService, CurrencyAppService>();
             services.AddScoped<IExpenseCategoryAppService, ExpenseCategoryAppService>();
             services.AddScoped<ITaxAppService, TaxAppService>();
+            services.AddScoped<IAccountAppService, AccountAppService>();
 
             // Domain - Commands
             services.AddScoped<IRequestHandler<RegisterNewCustomerCommand, ValidationResult>, CustomerCommandHandler>();
@@ -76,6 +77,7 @@ namespace JVB.FinancialControl.Web.Configurations
             services.AddScoped<ICurrencyRepository, CurrencyRepository>();
             services.AddScoped<IExpenseCategoryRepository, ExpenseCategoryRepository>();
             services.AddScoped<ITaxRepository, TaxRepository>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<ApplicationDbContext>();
         }
     }
