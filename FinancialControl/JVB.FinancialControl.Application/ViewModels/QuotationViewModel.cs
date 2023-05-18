@@ -8,12 +8,6 @@ namespace JVB.FinancialControl.Application.ViewModels
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "The Description is Required")]
-        [MinLength(2)]
-        [MaxLength(300)]
-        [DisplayName("Descricao")]
-        public string Description { get; set; }
-
         [Required(ErrorMessage = "The InitialValue is Required")]
         [DisplayName("Valor")]
         public decimal InitialValue { get; set; }
@@ -25,6 +19,9 @@ namespace JVB.FinancialControl.Application.ViewModels
         [Required(ErrorMessage = "The QuotationDate is Required")]
         [DisplayName("Data Conversao")]
         public DateTime QuotationDate { get; set; }
+
+        [Required(ErrorMessage = "The Rate is Required")]
+        public decimal Rate { get; set; }
 
         [Required(ErrorMessage = "The FromCurrency is Required")]
         [DisplayName("Moeda Origem")]
@@ -38,8 +35,10 @@ namespace JVB.FinancialControl.Application.ViewModels
         [DisplayName("Usuario")]
         public int UserId { get; set; }
 
+        [DisplayName("De")]
         public string FromCurrencyName { get; set; }
 
+        [DisplayName("Para")]
         public string ToCurrencyName { get; set; }
     }
 }

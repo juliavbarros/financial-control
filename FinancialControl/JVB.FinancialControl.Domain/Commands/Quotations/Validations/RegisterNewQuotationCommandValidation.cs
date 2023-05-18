@@ -6,7 +6,7 @@ namespace JVB.FinancialControl.Domain.Commands.Quotations.Validations
     {
         public RegisterNewQuotationCommandValidation()
         {
-            ValidateDescription();
+            ValidateRate();
             ValidateInitialValue();
             ValidateConvertedValue();
             ValidateQuotationDate();

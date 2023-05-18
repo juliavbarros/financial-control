@@ -6,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddCors();
+
 builder.Services.AddMvcConfiguration(builder.Configuration);
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
@@ -41,6 +43,14 @@ app.UseAuthorization();
 app.UseCookiePolicy();
 
 app.UseRouting();
+
+app.UseCors(builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+});
+
 
 app.MapControllerRoute(
     name: "default",

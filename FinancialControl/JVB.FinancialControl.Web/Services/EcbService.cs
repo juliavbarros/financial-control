@@ -10,6 +10,7 @@ namespace JVB.FinancialControl.Web.Services
     public interface IEcbService
     {
         Task<decimal> ConvertCurrency(string fromAmount, string fromCurrency, string toCurrency);
+        Task<decimal> GetLatestRateForCurrency(string currency);
     }
 
     public class EcbService : IEcbService
@@ -31,8 +32,8 @@ namespace JVB.FinancialControl.Web.Services
             var fromRate = await GetLatestRateForCurrency(fromCurrency);
             var toRate = await GetLatestRateForCurrency(toCurrency);
             var amount = Convert.ToDecimal(fromAmount, new CultureInfo("en-US"));
-
-            return amount / fromRate * toRate;
+            decimal convertedValue = amount / fromRate * toRate;
+            return Math.Round(convertedValue, 2);
         }
 
         public async Task<List<EcbCurrencyViewModel>> GetAll()
@@ -42,7 +43,7 @@ namespace JVB.FinancialControl.Web.Services
             return await ParseEnvelopeToCurrencyAsync(response);
         }
 
-        private async Task<decimal> GetLatestRateForCurrency(string currency)
+        public async Task<decimal> GetLatestRateForCurrency(string currency)
         {
             if (currency.ToLower() == "eur")
             {
@@ -103,5 +104,7 @@ namespace JVB.FinancialControl.Web.Services
             }
             return result;
         }
+
+       
     }
 }

@@ -19,7 +19,7 @@ namespace JVB.FinancialControl.Domain.Commands.Quotations
         {
             if (!message.IsValid()) return message.ValidationResult;
 
-            var quotation = new Quotation(0, message.Description, message.InitialValue, message.ConvertedValue, message.QuotationDate, message.FromCurrencyId, message.ToCurrencyId, message.UserId);
+            var quotation = new Quotation(0, message.InitialValue, message.ConvertedValue, message.QuotationDate, message.Rate, message.FromCurrencyId, message.ToCurrencyId, message.UserId);
 
             _quotationRepository.Add(quotation);
 

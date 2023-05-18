@@ -5,11 +5,10 @@ namespace JVB.FinancialControl.Domain.Commands.Quotations.Validations
 {
     public abstract class QuotationValidation<T> : AbstractValidator<T> where T : QuotationCommand
     {
-        protected void ValidateDescription()
+        protected void ValidateRate()
         {
-            RuleFor(c => c.Description)
-                .NotEmpty().WithMessage("Please ensure you have entered the Name")
-                .Length(2, 300).WithMessage("The Name must have between 2 and 150 characters");
+            RuleFor(c => c.Rate)
+                .NotEqual(0);
         }
         protected void ValidateInitialValue()
         {

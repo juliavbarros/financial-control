@@ -43,7 +43,7 @@ namespace JVB.FinancialControl.Application.AutoMapper
 
             CreateMap<TaxViewModel, UpdateTaxCommand>().ConstructUsing(c => new UpdateTaxCommand(c.Id, c.Name, c.Description));
 
-            CreateMap<QuotationViewModel, RegisterNewQuotationCommand>().ConstructUsing(c => new RegisterNewQuotationCommand(c.Description, c.InitialValue, c.ConvertedValue, c.QuotationDate, c.FromCurrencyId, c.ToCurrencyId, c.UserId));
+            CreateMap<QuotationViewModel, RegisterNewQuotationCommand>().ConstructUsing(c => new RegisterNewQuotationCommand(c.InitialValue, c.ConvertedValue, c.QuotationDate, c.Rate, c.FromCurrencyId, c.ToCurrencyId, c.UserId));
         }
     }
 }

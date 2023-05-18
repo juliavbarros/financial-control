@@ -13,10 +13,9 @@ namespace JVB.FinancialControl.Data.Mappings
             builder.Property(c => c.Id)
                .HasColumnName("Id");
 
-            builder.Property(c => c.Description)
-              .HasColumnType("varchar(100)")
-              .HasMaxLength(100)
-              .IsRequired();
+            builder.Property(c => c.Rate)
+            .HasColumnType("decimal(18,2)")
+            .IsRequired();
 
             builder.Property(c => c.InitialValue)
               .HasColumnType("decimal(18,2)")

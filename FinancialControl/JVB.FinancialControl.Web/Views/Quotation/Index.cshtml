@@ -1,9 +1,10 @@
+@using System.Security.Claims;
 @model IEnumerable<JVB.FinancialControl.Application.ViewModels.QuotationViewModel>
 
 @{
     ViewData["Title"] = "Cotacoes";
+    var nameIdentifier = User.FindFirstValue(ClaimTypes.NameIdentifier);
 }
-
 
 <div class="content-header">
     <div class="container-fluid">
@@ -23,29 +24,70 @@
 
 <section class="content">
     <div class="container-fluid">
+        <div class="card card-secondary">
+            <div class="card-header">
+                <h3 class="card-title">Conversor de Moeda</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-3"> </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>De</label>
+                            @Html.DropDownList("fromCurrency", new SelectList(ViewBag.CurrencyList, "Id", "Code"),  new {@class="form-control"})
+                        </div>
+                        <div class="form-group">
+                            <input id="fromValue" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Para</label>
+                            @Html.DropDownList("toCurrency", new SelectList(ViewBag.CurrencyList, "Id", "Code"),  new {@class="form-control"})
+                        </div>
+                        <div class="form-group">
+                            <input id="convertedValue" class="form-control" disabled>
+                        </div>
+                        <div class="text-right">
+                            <input id="btnConvert" type="button" value="Converter" class="btn btn-primary" />
+                            <input id="btnSave" type="button" value="Guardar" class="btn btn-dark" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="content">
+    <div class="container-fluid">
         <div class="card">
             <div class="card-body">
                 <table id="userTypeDatatable" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>@Html.DisplayNameFor(model => model.Description)</th>
-                            <th>@Html.DisplayNameFor(model => model.InitialValue)</th>
-                            <th>@Html.DisplayNameFor(model => model.ConvertedValue)</th>
                             <th>@Html.DisplayNameFor(model => model.QuotationDate)</th>
+                            <th>@Html.DisplayNameFor(model => model.Rate)</th>
                             <th>@Html.DisplayNameFor(model => model.FromCurrencyName)</th>
                             <th>@Html.DisplayNameFor(model => model.ToCurrencyName)</th>
+                            <th>@Html.DisplayNameFor(model => model.InitialValue)</th>
+                            <th>@Html.DisplayNameFor(model => model.ConvertedValue)</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @foreach (var item in Model.OrderByDescending(x=> x.Id))
                         {
                             <tr>
-                                <td>@Html.DisplayFor(modelItem => item.Description)</td>
-                                <td>@Html.DisplayFor(modelItem => item.InitialValue)</td>
-                                <td>@Html.DisplayFor(modelItem => item.ConvertedValue)</td>
-                                <td>@Html.DisplayFor(modelItem => item.QuotationDate)</td>
+                                <td>@item.QuotationDate.ToString("dd/MM/yyyy")</td>
+                                <td>@Html.DisplayFor(modelItem => item.Rate)</td>
                                 <td>@Html.DisplayFor(modelItem => item.FromCurrencyName)</td>
                                 <td>@Html.DisplayFor(modelItem => item.ToCurrencyName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.InitialValue)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ConvertedValue)</td>
                             </tr>
                         }
                     </tbody>
@@ -60,6 +102,7 @@
     {
     <script src="~/adminlte/plugins/datatable/jquery.datatables.min.js"></script>
     <script src="~/adminlte/plugins/datatable/datatables.bootstrap4.min.js"></script>
+    <script src="~/adminlte/plugins/mask/jquery.mask.min.js"></script>
 
     <script>
         $(function () {
@@ -67,11 +110,143 @@
                 "paging": true,
                 "lengthChange": false,
                 "searching": false,
-                "ordering": true,
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
+                "order": []
+            });
+
+            $("#btnConvert").click(function () {
+
+                var value = parseFloat($('#fromValue').val().replace(/,/g, ''));
+
+                $.ajax({
+                    type: "GET",
+                    url: "/Quotation/ConvertCurrency",
+                    data: { value: $("#fromValue").val(), fromCurrency: $("#fromCurrency").find('option:selected').text(), toCurrency: $("#toCurrency").find('option:selected').text() },
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        $("#convertedValue").val(response)
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            });
+
+            $("#btnSave").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Quotation/Create",
+                    data: { initialValue: $("#fromValue").val(), convertedValue: $("#convertedValue").val(), fromCurrency: $("#toCurrency").find('option:selected').text(), fromCurrencyId: $("#fromCurrency").val(), toCurrencyId: $("#toCurrency").val(), userId: @nameIdentifier },
+                    success: function () {
+                        location.reload();
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Error:", error);
+                    }
+                });
             });
         });
+
     </script>
+    @*
+    <script>
+        Code using only FE
+        $(document).ready(function () {
+            $(function () {
+                $('#userTypeDatatable').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "responsive": true,
+                })
+            });
+
+            $("#btnSave").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Quotation/Create",
+                    data: { initialValue: $("#fromValue").val(), convertedValue: $("#convertedValue").val(), fromCurrency: $("#toCurrency").find('option:selected').text(), fromCurrencyId: $("#fromCurrency").val(), toCurrencyId: $("#toCurrency").val(), userId: @nameIdentifier },
+                    success: function () {
+                        location.reload();
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Error:", error);
+                    }
+                });
+            });
+            // Function to convert currency
+            function convertCurrency(fromCurrency, toCurrency, fromValue) {
+
+                $.ajax({
+                    url: 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml',
+                    dataType: 'xml',
+                    success: function (data) {
+
+                        var fromRate = findExchangeRate(data, fromCurrency);
+                        var toRate = findExchangeRate(data, toCurrency);
+                        var convertedValue = fromValue / fromRate * toRate;
+                        $('#convertedValue').val(convertedValue.toFixed(2));
+                    },
+                    error: function () {
+                        alert('Failed to retrieve exchange rate data.');
+                    }
+                });
+            }
+
+            // Function to find exchange rate from XML data
+            function findExchangeRate(data, currency) {
+                var rate = null;
+
+                if (currency === "EUR") {
+                    return 1;
+                }
+
+                var $cubes = $(data).find('Cube');
+
+                $cubes.each(function () {
+                    var nodeCurrency = $(this).attr('currency');
+                    var nodeRate = $(this).attr('rate');
+
+                    if (nodeCurrency === currency) {
+                        rate = nodeRate;
+                    }
+                });
+
+                if (rate === null) {
+                    console.log('Exchange rate not found for', currency, 'to', currency);
+                }
+                return parseFloat(rate);
+            }
+
+            // Event handler for Convert button
+            $('#btnConvert').click(function () {
+                var fromCurrency = $('#fromCurrency').find('option:selected').text();
+                var toCurrency = $('#toCurrency').find('option:selected').text();
+                var fromValue = parseFloat($('#fromValue').val());
+
+                if (isNaN(fromValue)) {
+                    alert('Please enter a valid numeric value.');
+                    return;
+                }
+
+                var convertedValue = convertCurrency(fromCurrency, toCurrency, fromValue);
+                $("#convertedValue").val(convertedValue)
+            });
+        });
+    </script>*@
 }

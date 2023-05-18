@@ -4,9 +4,9 @@ namespace JVB.FinancialControl.Domain.Commands.Quotations
 {
     public class RegisterNewQuotationCommand : QuotationCommand
     {
-        public RegisterNewQuotationCommand(string description, decimal initialValue, decimal convertedValue, DateTime quotationDate, int fromCurrencyId, int toCurrencyId, int userId)
+        public RegisterNewQuotationCommand(decimal initialValue, decimal convertedValue, DateTime quotationDate, decimal rate, int fromCurrencyId, int toCurrencyId, int userId)
         {
-            Description = description;
+            Rate = rate;
             InitialValue = initialValue;
             ConvertedValue = convertedValue;
             QuotationDate = quotationDate;

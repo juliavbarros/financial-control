@@ -20,7 +20,6 @@ namespace JVB.FinancialControl.Web.Controllers
 
         public IActionResult Index()
         {
-            //var test = await _ecbService.ConvertCurrency("5000", "EUR", "USD");
             return View();
         }
 
