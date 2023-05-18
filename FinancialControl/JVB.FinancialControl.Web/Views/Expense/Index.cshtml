@@ -1,0 +1,183 @@
+@model IEnumerable<JVB.FinancialControl.Common.Models.ExpenseMultiModel>
+
+@{
+    ViewData["Title"] = "Gerenciar Despesas";
+    decimal sumAllLine = 0;
+    var culture = new System.Globalization.CultureInfo("pt-PT");
+
+}
+<style>
+    td {
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">@ViewData["Title"]</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div>
+                    <div class="pull-left">
+                        <a asp-action="Create" class="btn btn-primary">
+                            <span title="Nova Despesa" class="fas fa-plus"></span> Novo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="card">
+            <div class="card-body p-0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th>Janeiro</th>
+                            <th>Fevereiro</th>
+                            <th>Marco</th>
+                            <th>Abril</th>
+                            <th>Maio</th>
+                            <th>Junho</th>
+                            <th>Julho</th>
+                            <th>Agosto</th>
+                            <th>Setembro</th>
+                            <th>Outubro</th>
+                            <th>Novembro</th>
+                            <th>Dezembro</th>
+                            <th style="width: 10px" ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            var sumLine = (@item.January != 0 ? Convert.ToDecimal(@item.January) : 0)
+                            + (@item.February != 0 ? Convert.ToDecimal(@item.February) : 0)
+                            + (@item.March != 0 ? Convert.ToDecimal(@item.March) : 0)
+                            + (@item.April != 0 ? Convert.ToDecimal(@item.April) : 0)
+                            + (@item.May != 0 ? Convert.ToDecimal(@item.May) : 0)
+                            + (@item.June != 0 ? Convert.ToDecimal(@item.June) : 0)
+                            + (@item.July != 0 ? Convert.ToDecimal(@item.July) : 0)
+                            + (@item.August != 0 ? Convert.ToDecimal(@item.August) : 0)
+                            + (@item.September != 0 ? Convert.ToDecimal(@item.September) : 0)
+                            + (@item.October != 0 ? Convert.ToDecimal(@item.October) : 0)
+                            + (@item.November != 0 ? Convert.ToDecimal(@item.November) : 0)
+                            + (@item.December != 0 ? Convert.ToDecimal(@item.December) : 0);
+
+
+                            sumAllLine += sumLine;
+
+                            <tr>
+                                <td>@item.CategoryName</td>
+                                <td><input class="form-control rowValue" categoryId="@item.CategoryId" initialValue="@item.January" rowId="@item.JanuaryRowId" month="1" value="@item.January"></td>
+                                <td><input class="form-control rowValue" categoryId="@item.CategoryId" initialValue="@item.February" rowId="@item.FebruaryRowId" month="2" value="@item.February"></td>
+                                <td><input class="form-control rowValue" categoryId="@item.CategoryId" initialValue="@item.March" rowId="@item.MarchRowId" month="3" value="@item.March"></td>
+                                <td><input class="form-control rowValue" categoryId="@item.CategoryId" initialValue="@item.April" rowId="@item.AprilRowId" month="4" value="@item.April"></td>
+                                <td><input class="form-control rowValue" categoryId="@item.CategoryId" initialValue="@item.May" rowId="@item.MayRowId" month="5" value="@item.May"></td>
+                                <td><input class="form-control rowValue" categoryId="@item.CategoryId" initialValue="@item.June" rowId="@item.JuneRowId" month="6" value="@item.June"></td>
+                                <td><input class="form-control rowValue" categoryId="@item.CategoryId" initialValue="@item.July" rowId="@item.JulyRowId" month="7" value="@item.July"></td>
+                                <td><input class="form-control rowValue" categoryId="@item.CategoryId" initialValue="@item.August" rowId="@item.AugustRowId" month="8" value="@item.August"></td>
+                                <td><input class="form-control rowValue" categoryId="@item.CategoryId" initialValue="@item.September" rowId="@item.SeptemberRowId" month="9" value="@item.September"></td>
+                                <td><input class="form-control rowValue" categoryId="@item.CategoryId" initialValue="@item.October" rowId="@item.SeptemberRowId" month="10" value="@item.October"></td>
+                                <td><input class="form-control rowValue" categoryId="@item.CategoryId" initialValue="@item.November" rowId="@item.NovemberRowId" month="11" value="@item.November"></td>
+                                <td><input class="form-control rowValue" categoryId="@item.CategoryId" initialValue="@item.December" rowId="@item.DecemberRowId" month="12" value="@item.December"></td>
+                                <td>@sumLine.ToString("C", culture)</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td></td>
+                            <td>@Model.Sum(x => Convert.ToDecimal(x.January)).ToString("C", culture)</td>
+                            <td>@Model.Sum(x => Convert.ToDecimal(x.February)).ToString("C", culture)</td>
+                            <td>@Model.Sum(x => Convert.ToDecimal(x.March)).ToString("C", culture)</td>
+                            <td>@Model.Sum(x => Convert.ToDecimal(x.April)).ToString("C", culture)</td>
+                            <td>@Model.Sum(x => Convert.ToDecimal(x.May)).ToString("C", culture)</td>
+                            <td>@Model.Sum(x => Convert.ToDecimal(x.June)).ToString("C", culture)</td>
+                            <td>@Model.Sum(x => Convert.ToDecimal(x.July)).ToString("C", culture)</td>
+                            <td>@Model.Sum(x => Convert.ToDecimal(x.August)).ToString("C", culture)</td>
+                            <td>@Model.Sum(x => Convert.ToDecimal(x.September)).ToString("C", culture)</td>
+                            <td>@Model.Sum(x => Convert.ToDecimal(x.October)).ToString("C", culture)</td>
+                            <td>@Model.Sum(x => Convert.ToDecimal(x.November)).ToString("C", culture)</td>
+                            <td>@Model.Sum(x => Convert.ToDecimal(x.December)).ToString("C", culture)</td>
+                            <td>@sumAllLine.ToString("C", culture)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scripts
+    {
+    <script src="~/adminlte/plugins/datatable/jquery.datatables.min.js"></script>
+    <script src="~/adminlte/plugins/datatable/datatables.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+
+            $('.rowValue').maskMoney({
+                thousands: '.',
+                decimal: ','
+            });
+
+            $(".rowValue").on('blur', function () {
+
+                var initialValue = parseFloat($(this).attr('initialValue'));
+                var enteredValue = parseFloat($(this).val());
+                var $td = $(this).closest('td');
+
+
+                if (enteredValue && initialValue != enteredValue) {
+
+                    var month = parseInt($(this).attr('month'));
+                    var categoryId = parseInt($(this).attr('categoryId'));
+                    var expenseId = $(this).attr('rowId');
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/Expense/AddOrUpdateExpense",
+                        data: { month: month, categoryId: categoryId, expenseId: expenseId, enteredValue: enteredValue },
+                        success: function (response) {
+                            $td.effect("highlight", { color: "#ffff99" }, 2000);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+    }
+
+
+
+
+
+

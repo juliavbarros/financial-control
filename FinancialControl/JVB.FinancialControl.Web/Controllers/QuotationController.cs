@@ -46,16 +46,6 @@ namespace JVB.FinancialControl.Web.Controllers
 
             return Json(convertedValue.ToString("N2"));
         }
-
-        [AllowAnonymous]
-        [HttpGet("Create")]
-        public IActionResult Create()
-        {
-            //ViewBag.UserTypeList = await _currencyAppService.GetAll();
-
-            return View();
-        }
-
         [AllowAnonymous]
         [HttpPost("Create")]
         public async Task<IActionResult> Create(string initialValue, string convertedValue, string fromCurrency, string fromCurrencyId, string toCurrencyId, string userId)
@@ -78,14 +68,5 @@ namespace JVB.FinancialControl.Web.Controllers
 
             return Json(new { success = true });
         }
-    }
-
-    public class CreateQuotationViewModel
-    {
-        public string InitialValue { get; set; }
-        public string ConvertedValue { get; set; }
-        public string FromCurrencyId { get; set; }
-        public string ToCurrencyId { get; set; }
-        public string UserId { get; set; }
     }
 }

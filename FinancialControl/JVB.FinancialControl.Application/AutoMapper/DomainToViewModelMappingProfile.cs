@@ -18,6 +18,8 @@ namespace JVB.FinancialControl.Application.AutoMapper
             CreateMap<Quotation, QuotationViewModel>()
                 .ForMember(dest => dest.FromCurrencyName, opt => opt.MapFrom(src => src.FromCurrency.Name))
                 .ForMember(dest => dest.ToCurrencyName, opt => opt.MapFrom(src => src.ToCurrency.Name));
+            CreateMap<Expense, ExpenseViewModel>()
+            .ForMember(dest => dest.ExpenseCategoryName, opt => opt.MapFrom(src => src.ExpenseCategory.Name));
         }
     }
 }

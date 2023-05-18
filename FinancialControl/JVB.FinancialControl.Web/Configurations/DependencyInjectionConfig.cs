@@ -8,6 +8,7 @@ using JVB.FinancialControl.Data.Repository;
 using JVB.FinancialControl.Domain.Commands.Currencies;
 using JVB.FinancialControl.Domain.Commands.Customers;
 using JVB.FinancialControl.Domain.Commands.ExpenseCategories;
+using JVB.FinancialControl.Domain.Commands.Expenses;
 using JVB.FinancialControl.Domain.Commands.Projects;
 using JVB.FinancialControl.Domain.Commands.Quotations;
 using JVB.FinancialControl.Domain.Commands.Taxes;
@@ -41,6 +42,7 @@ namespace JVB.FinancialControl.Web.Configurations
             services.AddScoped<ITaxAppService, TaxAppService>();
             services.AddScoped<IAccountAppService, AccountAppService>();
             services.AddScoped<IQuotationAppService, QuotationAppService>();
+            services.AddScoped<IExpenseAppService, ExpenseAppService>();
 
             // Domain - Commands
             services.AddScoped<IRequestHandler<RegisterNewCustomerCommand, ValidationResult>, CustomerCommandHandler>();
@@ -73,6 +75,10 @@ namespace JVB.FinancialControl.Web.Configurations
 
             services.AddScoped<IRequestHandler<RegisterNewQuotationCommand, ValidationResult>, QuotationCommandHandler>();
 
+            services.AddScoped<IRequestHandler<RegisterNewExpenseCommand, ValidationResult>, ExpenseCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateExpenseCommand, ValidationResult>, ExpenseCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveExpenseCommand, ValidationResult>, ExpenseCommandHandler>();
+
             // Infra - Data
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
@@ -83,6 +89,7 @@ namespace JVB.FinancialControl.Web.Configurations
             services.AddScoped<ITaxRepository, TaxRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IQuotationRepository, QuotationRepository>();
+            services.AddScoped<IExpenseRepository, ExpenseRepository>();
             services.AddScoped<ApplicationDbContext>();
         }
     }

@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JVB.FinancialControl.Web.Controllers
 {
-    [Authorize]
     [Route("[controller]")]
     public class CustomerController : BaseController
     {

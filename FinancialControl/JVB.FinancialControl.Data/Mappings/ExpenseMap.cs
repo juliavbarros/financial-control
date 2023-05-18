@@ -15,13 +15,12 @@ namespace JVB.FinancialControl.Data.Mappings
 
             builder.Property(c => c.Name)
                .HasColumnType("varchar(100)")
-               .HasMaxLength(100)
-               .IsRequired();
+               .HasMaxLength(100);
+
 
             builder.Property(c => c.Description)
               .HasColumnType("varchar(300)")
-              .HasMaxLength(100)
-              .IsRequired();
+              .HasMaxLength(100);
 
             builder.Property(c => c.Value)
               .HasColumnType("decimal(18,2)")

@@ -2,15 +2,14 @@
 {
     public class Expense
     {
-        public Expense(int id, string name, string description, decimal value, int quantityInstallment, DateTime beginDate, DateTime endDate, int expenseCategoryId, int userId)
+        public Expense(int id, string? name, string? description, decimal value, int? currentInstallment, DateTime date, int expenseCategoryId, int userId)
         {
             Id = id;
             Name = name;
             Description = description;
             Value = value;
-            QuantityInstallment = quantityInstallment;
-            BeginDate = beginDate;
-            EndDate = endDate;
+            CurrentInstallment = currentInstallment;
+            Date = date;
             ExpenseCategoryId = expenseCategoryId;
             UserId = userId;
         }
@@ -19,12 +18,11 @@
         { }
 
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
         public decimal Value { get; set; }
-        public int QuantityInstallment { get; set; }
-        public DateTime BeginDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public int? CurrentInstallment { get; set; }
+        public DateTime Date { get; set; }
         public int ExpenseCategoryId { get; set; }
         public int UserId { get; set; }
         public virtual ExpenseCategory ExpenseCategory { get; set; }
