@@ -7,6 +7,7 @@ namespace JVB.FinancialControl.Data.Interfaces
         Task<Expense> GetById(int id);
 
         Task<IEnumerable<Expense>> GetAll();
+
         Task<IEnumerable<Expense>> GetByUserId(int userId);
 
         void Add(Expense expense);

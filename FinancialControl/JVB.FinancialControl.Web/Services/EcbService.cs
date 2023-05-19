@@ -10,6 +10,7 @@ namespace JVB.FinancialControl.Web.Services
     public interface IEcbService
     {
         Task<decimal> ConvertCurrency(string fromAmount, string fromCurrency, string toCurrency);
+
         Task<decimal> GetLatestRateForCurrency(string currency);
     }
 
@@ -104,7 +105,5 @@ namespace JVB.FinancialControl.Web.Services
             }
             return result;
         }
-
-       
     }
 }

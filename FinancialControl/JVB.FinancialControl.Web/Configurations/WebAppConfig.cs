@@ -18,8 +18,6 @@ namespace JVB.FinancialControl.Web.Configurations
                 options.LoginPath = "/Account/Login";
                 options.AccessDeniedPath = "/Account/Forbidden/";
             });
-
-           
         }
     }
 }

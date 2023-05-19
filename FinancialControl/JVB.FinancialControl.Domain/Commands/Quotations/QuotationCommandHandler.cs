@@ -25,6 +25,7 @@ namespace JVB.FinancialControl.Domain.Commands.Quotations
 
             return await Commit(_quotationRepository.UnitOfWork);
         }
+
         public void Dispose()
         {
             _quotationRepository.Dispose();

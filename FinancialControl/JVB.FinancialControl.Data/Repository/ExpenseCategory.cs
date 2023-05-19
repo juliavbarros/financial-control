@@ -27,10 +27,11 @@ namespace JVB.FinancialControl.Data.Repository
         {
             return await DbSet.ToListAsync();
         }
+
         public async Task<IEnumerable<Expense>> GetByUserId(int userId)
         {
             return await DbSet
-                .Include(x=> x.ExpenseCategory)
+                .Include(x => x.ExpenseCategory)
                 .Where(x => x.UserId == userId).ToListAsync();
         }
 
@@ -53,7 +54,5 @@ namespace JVB.FinancialControl.Data.Repository
         {
             Db.Dispose();
         }
-
-
     }
 }

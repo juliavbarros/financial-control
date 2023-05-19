@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using JVB.FinancialControl.Domain.Commands.Quotations;
 
 namespace JVB.FinancialControl.Domain.Commands.Quotations.Validations
 {
@@ -10,11 +9,13 @@ namespace JVB.FinancialControl.Domain.Commands.Quotations.Validations
             RuleFor(c => c.Rate)
                 .NotEqual(0);
         }
+
         protected void ValidateInitialValue()
         {
             RuleFor(c => c.InitialValue)
                 .NotEqual(0);
         }
+
         protected void ValidateConvertedValue()
         {
             RuleFor(c => c.ConvertedValue)

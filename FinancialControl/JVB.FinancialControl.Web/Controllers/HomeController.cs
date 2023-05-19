@@ -1,7 +1,5 @@
-﻿using JVB.FinancialControl.Common.Login;
-using JVB.FinancialControl.Web.Models;
+﻿using JVB.FinancialControl.Web.Models;
 using JVB.FinancialControl.Web.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

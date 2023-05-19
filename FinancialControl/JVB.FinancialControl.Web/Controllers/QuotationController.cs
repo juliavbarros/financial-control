@@ -1,11 +1,8 @@
 using JVB.FinancialControl.Application.Interfaces;
-using JVB.FinancialControl.Application.Services;
 using JVB.FinancialControl.Application.ViewModels;
 using JVB.FinancialControl.Web.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace JVB.FinancialControl.Web.Controllers
 {
@@ -15,7 +12,6 @@ namespace JVB.FinancialControl.Web.Controllers
         private readonly IQuotationAppService _quotationAppService;
         private readonly ICurrencyAppService _currencyAppService;
         private readonly IEcbService _ecbService;
-
 
         public QuotationController(
             IQuotationAppService quotationAppService,
@@ -33,9 +29,8 @@ namespace JVB.FinancialControl.Web.Controllers
         {
             ViewBag.CurrencyList = await _currencyAppService.GetAll();
 
-            return View((await _quotationAppService.GetAll()).OrderByDescending(x=>x.Id));
+            return View((await _quotationAppService.GetAll()).OrderByDescending(x => x.Id));
         }
-
 
         [AllowAnonymous]
         [HttpGet("ConvertCurrency")]
@@ -46,14 +41,13 @@ namespace JVB.FinancialControl.Web.Controllers
 
             return Json(convertedValue.ToString("N2"));
         }
+
         [AllowAnonymous]
         [HttpPost("Create")]
         public async Task<IActionResult> Create(string initialValue, string convertedValue, string fromCurrency, string fromCurrencyId, string toCurrencyId, string userId)
         {
-
             var quotationViewModel = new QuotationViewModel
             {
-
                 InitialValue = Convert.ToDecimal(initialValue),
                 ConvertedValue = Convert.ToDecimal(convertedValue),
                 FromCurrencyId = Convert.ToInt32(fromCurrencyId),

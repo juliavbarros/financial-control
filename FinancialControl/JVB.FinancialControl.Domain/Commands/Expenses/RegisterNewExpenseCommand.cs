@@ -4,7 +4,7 @@ namespace JVB.FinancialControl.Domain.Commands.Expenses
 {
     public class RegisterNewExpenseCommand : ExpenseCommand
     {
-        public RegisterNewExpenseCommand(string? name, string? description, decimal value, int? currentInstallment, DateTime date,  int expenseCategoryId, int userId)
+        public RegisterNewExpenseCommand(string? name, string? description, decimal value, int? currentInstallment, DateTime date, int expenseCategoryId, int userId)
         {
             Name = name;
             Description = description;

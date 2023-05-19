@@ -1,6 +1,4 @@
-﻿using JVB.FinancialControl.Domain.Commands.GoalCategories;
-
-namespace JVB.FinancialControl.Domain.Commands.GoalCategories.Validations
+﻿namespace JVB.FinancialControl.Domain.Commands.GoalCategories.Validations
 {
     public class UpdateGoalCategoryCommandValidation : GoalCategoryValidation<UpdateGoalCategoryCommand>
     {

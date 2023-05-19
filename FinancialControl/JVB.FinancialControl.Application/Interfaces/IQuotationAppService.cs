@@ -10,6 +10,5 @@ namespace JVB.FinancialControl.Application.Interfaces
         Task<QuotationViewModel> GetById(int id);
 
         Task<ValidationResult> Register(QuotationViewModel quotationViewModel);
-
     }
 }

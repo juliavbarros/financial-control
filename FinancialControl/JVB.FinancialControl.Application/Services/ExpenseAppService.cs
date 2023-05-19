@@ -7,8 +7,6 @@ using JVB.FinancialControl.Common.Models;
 using JVB.FinancialControl.Data.Entities;
 using JVB.FinancialControl.Data.Interfaces;
 using JVB.FinancialControl.Domain.Commands.Expenses;
-using Newtonsoft.Json.Linq;
-using System;
 
 namespace JVB.FinancialControl.Application.Services
 {
@@ -40,7 +38,6 @@ namespace JVB.FinancialControl.Application.Services
             var expenses = await _expenseRepository.GetByUserId(userId);
             var categories = await _expenseCategoryRepository.GetAll();
             var returnModel = new List<ExpenseMultiModel>();
-
 
             foreach (var item in categories)
             {

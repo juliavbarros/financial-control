@@ -17,7 +17,6 @@ namespace JVB.FinancialControl.Data.Mappings
                .HasColumnType("varchar(100)")
                .HasMaxLength(100);
 
-
             builder.Property(c => c.Description)
               .HasColumnType("varchar(300)")
               .HasMaxLength(100);

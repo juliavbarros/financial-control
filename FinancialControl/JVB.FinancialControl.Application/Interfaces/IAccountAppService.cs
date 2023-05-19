@@ -1,5 +1,4 @@
-﻿using FluentValidation.Results;
-using JVB.FinancialControl.Application.ViewModels;
+﻿using JVB.FinancialControl.Application.ViewModels;
 using JVB.FinancialControl.Common.Login;
 
 namespace JVB.FinancialControl.Application.Interfaces

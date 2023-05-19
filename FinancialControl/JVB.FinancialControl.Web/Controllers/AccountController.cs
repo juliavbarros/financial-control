@@ -47,7 +47,7 @@ namespace JVB.FinancialControl.Web.Controllers
                     {
                         IsPersistent = loginViewModel.RememberLogin
                     });
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
             else
             {

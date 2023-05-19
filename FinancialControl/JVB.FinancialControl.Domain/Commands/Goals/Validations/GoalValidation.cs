@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using JVB.FinancialControl.Domain.Commands.Goals;
 
 namespace JVB.FinancialControl.Domain.Commands.Goals.Validations
 {
@@ -30,11 +29,13 @@ namespace JVB.FinancialControl.Domain.Commands.Goals.Validations
             RuleFor(c => c.EntryValue)
                 .NotEqual(0);
         }
+
         protected void ValidateQuantityInstallment()
         {
             RuleFor(c => c.QuantityInstallment)
                 .NotEqual(0);
         }
+
         protected void ValidateMonthlyInstallmentValue()
         {
             RuleFor(c => c.MonthlyInstallmentValue)
@@ -46,6 +47,7 @@ namespace JVB.FinancialControl.Domain.Commands.Goals.Validations
             RuleFor(c => c.Id)
                 .NotEqual(0);
         }
+
         protected void ValidateUserId()
         {
             RuleFor(c => c.UserId)

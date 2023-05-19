@@ -28,6 +28,6 @@
         public string? SeptemberRowId { get; set; }
         public string? OctoberRowId { get; set; }
         public string? NovemberRowId { get; set; }
-        public string? DecemberRowId{ get; set; }
+        public string? DecemberRowId { get; set; }
     }
 }

@@ -18,8 +18,6 @@ namespace JVB.FinancialControl.Data.Repository
 
         public IUnitOfWork UnitOfWork => Db;
 
-
-
         public void Dispose()
         {
             Db.Dispose();
@@ -30,7 +28,6 @@ namespace JVB.FinancialControl.Data.Repository
             return await DbSet
                 .Include(x => x.UserType)
                 .FirstOrDefaultAsync(c => c.Username == userName && c.Password  == password);
-
         }
     }
 }

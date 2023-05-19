@@ -1,6 +1,4 @@
-﻿using JVB.FinancialControl.Domain.Commands.Quotations;
-
-namespace JVB.FinancialControl.Domain.Commands.Quotations.Validations
+﻿namespace JVB.FinancialControl.Domain.Commands.Quotations.Validations
 {
     public class RegisterNewQuotationCommandValidation : QuotationValidation<RegisterNewQuotationCommand>
     {
@@ -13,7 +11,6 @@ namespace JVB.FinancialControl.Domain.Commands.Quotations.Validations
             ValidateFromCurrencyId();
             ValidateToCurrencyId();
             ValidateUserId();
-
         }
     }
 }

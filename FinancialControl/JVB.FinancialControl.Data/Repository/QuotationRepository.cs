@@ -26,8 +26,8 @@ namespace JVB.FinancialControl.Data.Repository
         public async Task<IEnumerable<Quotation>> GetAll()
         {
             return await DbSet
-                .Include(x=> x.FromCurrency)
-                .Include(x=> x.ToCurrency)
+                .Include(x => x.FromCurrency)
+                .Include(x => x.ToCurrency)
                 .ToListAsync();
         }
 
