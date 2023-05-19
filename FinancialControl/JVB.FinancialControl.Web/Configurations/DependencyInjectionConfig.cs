@@ -6,12 +6,11 @@ using JVB.FinancialControl.Data.Context;
 using JVB.FinancialControl.Data.Interfaces;
 using JVB.FinancialControl.Data.Repository;
 using JVB.FinancialControl.Domain.Commands.Currencies;
-using JVB.FinancialControl.Domain.Commands.Customers;
 using JVB.FinancialControl.Domain.Commands.ExpenseCategories;
 using JVB.FinancialControl.Domain.Commands.Expenses;
-using JVB.FinancialControl.Domain.Commands.Projects;
+using JVB.FinancialControl.Domain.Commands.GoalCategories;
+using JVB.FinancialControl.Domain.Commands.Goals;
 using JVB.FinancialControl.Domain.Commands.Quotations;
-using JVB.FinancialControl.Domain.Commands.Taxes;
 using JVB.FinancialControl.Domain.Commands.Users;
 using JVB.FinancialControl.Domain.Commands.UserTypes;
 using JVB.FinancialControl.Web.Services;
@@ -33,21 +32,17 @@ namespace JVB.FinancialControl.Web.Configurations
             services.AddScoped<IMediatorHandler, InMemoryBus>();
 
             // Application
-            services.AddScoped<ICustomerAppService, CustomerAppService>();
-            services.AddScoped<IProjectAppService, ProjectAppService>();
+            services.AddScoped<IGoalAppService, GoalAppService>();
+            services.AddScoped<IGoalCategoryAppService, GoalCategoryAppService>();
             services.AddScoped<IUserAppService, UserAppService>();
             services.AddScoped<IUserTypeAppService, UserTypeAppService>();
             services.AddScoped<ICurrencyAppService, CurrencyAppService>();
             services.AddScoped<IExpenseCategoryAppService, ExpenseCategoryAppService>();
-            services.AddScoped<ITaxAppService, TaxAppService>();
             services.AddScoped<IAccountAppService, AccountAppService>();
             services.AddScoped<IQuotationAppService, QuotationAppService>();
             services.AddScoped<IExpenseAppService, ExpenseAppService>();
 
             // Domain - Commands
-            services.AddScoped<IRequestHandler<RegisterNewCustomerCommand, ValidationResult>, CustomerCommandHandler>();
-            services.AddScoped<IRequestHandler<UpdateCustomerCommand, ValidationResult>, CustomerCommandHandler>();
-            services.AddScoped<IRequestHandler<RemoveCustomerCommand, ValidationResult>, CustomerCommandHandler>();
 
             services.AddScoped<IRequestHandler<RegisterNewUserCommand, ValidationResult>, UserCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateUserCommand, ValidationResult>, UserCommandHandler>();
@@ -57,9 +52,13 @@ namespace JVB.FinancialControl.Web.Configurations
             services.AddScoped<IRequestHandler<UpdateUserTypeCommand, ValidationResult>, UserTypeCommandHandler>();
             services.AddScoped<IRequestHandler<RemoveUserTypeCommand, ValidationResult>, UserTypeCommandHandler>();
 
-            services.AddScoped<IRequestHandler<RegisterNewProjectCommand, ValidationResult>, ProjectCommandHandler>();
-            services.AddScoped<IRequestHandler<UpdateProjectCommand, ValidationResult>, ProjectCommandHandler>();
-            services.AddScoped<IRequestHandler<RemoveProjectCommand, ValidationResult>, ProjectCommandHandler>();
+            services.AddScoped<IRequestHandler<RegisterNewGoalCommand, ValidationResult>, GoalCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateGoalCommand, ValidationResult>, GoalCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveGoalCommand, ValidationResult>, GoalCommandHandler>();
+
+            services.AddScoped<IRequestHandler<RegisterNewGoalCategoryCommand, ValidationResult>, GoalCategoryCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateGoalCategoryCommand, ValidationResult>, GoalCategoryCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveGoalCategoryCommand, ValidationResult>, GoalCategoryCommandHandler>();
 
             services.AddScoped<IRequestHandler<RegisterNewCurrencyCommand, ValidationResult>, CurrencyCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateCurrencyCommand, ValidationResult>, CurrencyCommandHandler>();
@@ -69,10 +68,6 @@ namespace JVB.FinancialControl.Web.Configurations
             services.AddScoped<IRequestHandler<UpdateExpenseCategoryCommand, ValidationResult>, ExpenseCategoryCommandHandler>();
             services.AddScoped<IRequestHandler<RemoveExpenseCategoryCommand, ValidationResult>, ExpenseCategoryCommandHandler>();
 
-            services.AddScoped<IRequestHandler<RegisterNewTaxCommand, ValidationResult>, TaxCommandHandler>();
-            services.AddScoped<IRequestHandler<UpdateTaxCommand, ValidationResult>, TaxCommandHandler>();
-            services.AddScoped<IRequestHandler<RemoveTaxCommand, ValidationResult>, TaxCommandHandler>();
-
             services.AddScoped<IRequestHandler<RegisterNewQuotationCommand, ValidationResult>, QuotationCommandHandler>();
 
             services.AddScoped<IRequestHandler<RegisterNewExpenseCommand, ValidationResult>, ExpenseCommandHandler>();
@@ -80,13 +75,12 @@ namespace JVB.FinancialControl.Web.Configurations
             services.AddScoped<IRequestHandler<RemoveExpenseCommand, ValidationResult>, ExpenseCommandHandler>();
 
             // Infra - Data
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<IGoalRepository, GoalRepository>();
+            services.AddScoped<IGoalCategoryRepository, GoalCategoryRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserTypeRepository, UserTypeRepository>();
             services.AddScoped<ICurrencyRepository, CurrencyRepository>();
             services.AddScoped<IExpenseCategoryRepository, ExpenseCategoryRepository>();
-            services.AddScoped<ITaxRepository, TaxRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IQuotationRepository, QuotationRepository>();
             services.AddScoped<IExpenseRepository, ExpenseRepository>();

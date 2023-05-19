@@ -13,8 +13,6 @@ namespace JVB.FinancialControl.Data.Context
         {
         }
 
-        public DbSet<Customer> Customers { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Ignore<ValidationResult>();
@@ -23,14 +21,12 @@ namespace JVB.FinancialControl.Data.Context
                 e => e.GetProperties().Where(p => p.ClrType == typeof(string))))
                 property.SetColumnType("varchar(100)");
 
-            modelBuilder.ApplyConfiguration(new CustomerMap());
             modelBuilder.ApplyConfiguration(new CurrencyMap());
             modelBuilder.ApplyConfiguration(new ExpenseMap());
             modelBuilder.ApplyConfiguration(new ExpenseCategoryMap());
-            modelBuilder.ApplyConfiguration(new ProjectMap());
+            modelBuilder.ApplyConfiguration(new GoalMap());
             modelBuilder.ApplyConfiguration(new QuotationMap());
-            modelBuilder.ApplyConfiguration(new SimulationMap());
-            modelBuilder.ApplyConfiguration(new TaxMap());
+            modelBuilder.ApplyConfiguration(new GoalCategoryMap());
             modelBuilder.ApplyConfiguration(new UserMap());
             modelBuilder.ApplyConfiguration(new UserTypeMap());
 
