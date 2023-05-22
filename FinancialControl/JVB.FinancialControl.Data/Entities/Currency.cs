@@ -10,7 +10,7 @@
             Symbol = symbol;
         }
 
-        protected Currency()
+        public Currency()
         { }
 
         public int Id { get; set; }
