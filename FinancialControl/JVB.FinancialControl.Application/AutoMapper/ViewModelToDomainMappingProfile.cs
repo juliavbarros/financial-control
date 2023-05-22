@@ -13,7 +13,6 @@ namespace JVB.FinancialControl.Application.AutoMapper
     {
         public ViewModelToDomainMappingProfile()
         {
-
             CreateMap<UserViewModel, RegisterNewUserCommand>().ConstructUsing(c => new RegisterNewUserCommand(c.Username, c.Password, c.Email, c.FirstName, c.LastName, c.BirthDate, c.GrossSalary, c.NetSalary, c.UserTypeId));
 
             CreateMap<UserViewModel, UpdateUserCommand>().ConstructUsing(c => new UpdateUserCommand(c.Id, c.Username, c.Password, c.Email, c.FirstName, c.LastName, c.BirthDate, c.GrossSalary, c.NetSalary, c.UserTypeId));
