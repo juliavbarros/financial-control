@@ -3,8 +3,6 @@ using JVB.FinancialControl.Application.ViewModels;
 using JVB.FinancialControl.Domain.Commands.Currencies;
 using JVB.FinancialControl.Domain.Commands.ExpenseCategories;
 using JVB.FinancialControl.Domain.Commands.Expenses;
-using JVB.FinancialControl.Domain.Commands.GoalCategories;
-using JVB.FinancialControl.Domain.Commands.Goals;
 using JVB.FinancialControl.Domain.Commands.Quotations;
 using JVB.FinancialControl.Domain.Commands.Users;
 using JVB.FinancialControl.Domain.Commands.UserTypes;
@@ -15,13 +13,6 @@ namespace JVB.FinancialControl.Application.AutoMapper
     {
         public ViewModelToDomainMappingProfile()
         {
-            CreateMap<GoalViewModel, RegisterNewGoalCommand>().ConstructUsing(c => new RegisterNewGoalCommand(c.Name, c.Description, c.TotalValue, c.EntryValue, c.QuantityInstallment, c.MonthlyInstallmentValue, c.BeginDate, c.EndDate, c.GoalCategoryId, c.UserId));
-
-            CreateMap<GoalViewModel, UpdateGoalCommand>().ConstructUsing(c => new UpdateGoalCommand(c.Id, c.Name, c.Description, c.TotalValue, c.EntryValue, c.QuantityInstallment, c.MonthlyInstallmentValue, c.BeginDate, c.EndDate, c.GoalCategoryId, c.UserId));
-
-            CreateMap<GoalCategoryViewModel, RegisterNewGoalCategoryCommand>().ConstructUsing(c => new RegisterNewGoalCategoryCommand(c.Name, c.Description));
-
-            CreateMap<GoalCategoryViewModel, UpdateGoalCategoryCommand>().ConstructUsing(c => new UpdateGoalCategoryCommand(c.Id, c.Name, c.Description));
 
             CreateMap<UserViewModel, RegisterNewUserCommand>().ConstructUsing(c => new RegisterNewUserCommand(c.Username, c.Password, c.Email, c.FirstName, c.LastName, c.BirthDate, c.GrossSalary, c.NetSalary, c.UserTypeId));
 

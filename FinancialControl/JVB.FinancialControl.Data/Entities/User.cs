@@ -31,7 +31,6 @@
         public int UserTypeId { get; set; }
         public virtual UserType UserType { get; set; }
         public virtual ICollection<Expense> Expenses { get; set; }
-        public virtual ICollection<Goal> Goals { get; set; }
         public virtual ICollection<Quotation> Quotations { get; set; }
     }
 }

@@ -8,8 +8,6 @@ namespace JVB.FinancialControl.Application.AutoMapper
     {
         public DomainToViewModelMappingProfile()
         {
-            CreateMap<Goal, GoalViewModel>();
-            CreateMap<GoalCategory, GoalCategoryViewModel>();
             CreateMap<User, UserViewModel>().ForMember(dest => dest.UsertTypeName, opt => opt.MapFrom(src => src.UserType.Name));
             CreateMap<UserType, UserTypeViewModel>();
             CreateMap<Currency, CurrencyViewModel>();

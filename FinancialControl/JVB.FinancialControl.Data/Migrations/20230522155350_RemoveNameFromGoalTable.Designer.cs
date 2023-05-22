@@ -4,6 +4,7 @@ using JVB.FinancialControl.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JVB.FinancialControl.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230522155350_RemoveNameFromGoalTable")]
+    partial class RemoveNameFromGoalTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,6 +109,77 @@ namespace JVB.FinancialControl.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ExpenseCategory");
+                });
+
+            modelBuilder.Entity("JVB.FinancialControl.Data.Entities.Goal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("BeginDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("EntryValue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("GoalCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("MonthlyInstallmentValue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("QuantityInstallment")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalValue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GoalCategoryId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Goal");
+                });
+
+            modelBuilder.Entity("JVB.FinancialControl.Data.Entities.GoalCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GoalCategory");
                 });
 
             modelBuilder.Entity("JVB.FinancialControl.Data.Entities.Quotation", b =>
@@ -241,6 +314,25 @@ namespace JVB.FinancialControl.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("JVB.FinancialControl.Data.Entities.Goal", b =>
+                {
+                    b.HasOne("JVB.FinancialControl.Data.Entities.GoalCategory", "GoalCategory")
+                        .WithMany("Goals")
+                        .HasForeignKey("GoalCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JVB.FinancialControl.Data.Entities.User", "User")
+                        .WithMany("Goals")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("GoalCategory");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("JVB.FinancialControl.Data.Entities.Quotation", b =>
                 {
                     b.HasOne("JVB.FinancialControl.Data.Entities.Currency", "FromCurrency")
@@ -291,9 +383,16 @@ namespace JVB.FinancialControl.Data.Migrations
                     b.Navigation("Expenses");
                 });
 
+            modelBuilder.Entity("JVB.FinancialControl.Data.Entities.GoalCategory", b =>
+                {
+                    b.Navigation("Goals");
+                });
+
             modelBuilder.Entity("JVB.FinancialControl.Data.Entities.User", b =>
                 {
                     b.Navigation("Expenses");
+
+                    b.Navigation("Goals");
 
                     b.Navigation("Quotations");
                 });

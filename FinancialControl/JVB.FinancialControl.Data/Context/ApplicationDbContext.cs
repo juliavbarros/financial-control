@@ -23,9 +23,7 @@ namespace JVB.FinancialControl.Data.Context
             modelBuilder.ApplyConfiguration(new CurrencyMap());
             modelBuilder.ApplyConfiguration(new ExpenseMap());
             modelBuilder.ApplyConfiguration(new ExpenseCategoryMap());
-            modelBuilder.ApplyConfiguration(new GoalMap());
             modelBuilder.ApplyConfiguration(new QuotationMap());
-            modelBuilder.ApplyConfiguration(new GoalCategoryMap());
             modelBuilder.ApplyConfiguration(new UserMap());
             modelBuilder.ApplyConfiguration(new UserTypeMap());
 
