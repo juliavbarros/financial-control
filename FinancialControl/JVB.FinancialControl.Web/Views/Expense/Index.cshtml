@@ -40,19 +40,6 @@
 
 <section class="content">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div>
-                    <div class="pull-left">
-                        <a asp-action="Create" class="btn btn-primary">
-                            <span title="Nova Despesa" class="fas fa-plus"></span> Novo
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br />
-
         <div class="card">
             <div class="card-body p-0">
                 <table class="table table-striped">
@@ -144,17 +131,18 @@
     <script>
         $(document).ready(function () {
 
-            $('.rowValue').maskMoney({
-                thousands: '.',
-                decimal: ','
-            });
+            //$('.rowValue').maskMoney({
+            //    thousands: '.',
+            //    decimal: ','
+            //});
 
             $(".rowValue").on('blur', function () {
 
                 var initialValue = parseFloat($(this).attr('initialValue'));
                 var enteredValue = parseFloat($(this).val());
-                var $td = $(this).closest('td');
 
+                var $td = $(this).closest('td');
+                console.log($(this).val());
 
                 if (enteredValue && initialValue != enteredValue) {
 
@@ -167,8 +155,9 @@
                         url: "/Expense/AddOrUpdateExpense",
                         data: { month: month, categoryId: categoryId, expenseId: expenseId, enteredValue: enteredValue },
                         success: function (response) {
-                            location.reload();
+                            
                             $td.effect("highlight", { color: "#ffff99" }, 2000);
+                            location.reload();
                         },
                         failure: function (response) {
                             alert(response.responseText);

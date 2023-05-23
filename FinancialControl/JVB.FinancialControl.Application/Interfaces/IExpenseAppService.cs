@@ -7,12 +7,13 @@ namespace JVB.FinancialControl.Application.Interfaces
     public interface IExpenseAppService : IDisposable
     {
         Task<IEnumerable<ExpenseViewModel>> GetAll();
+        Task<IEnumerable<ExpenseViewModel>> GetByUserId(int userId);
 
         Task<IEnumerable<ExpenseMultiModel>> GetExpenseTable(int userId);
 
-        Task<BarChartModel> GetRevenueExpensesData();
+        Task<BarChartModel> GetRevenueExpensesData(int userId);
 
-        Task<DonutChartModel> GetExpensesByCategoryData();
+        Task<DonutChartModel> GetExpensesByCategoryData(int userId);
 
         Task<ExpenseViewModel> GetById(int id);
 

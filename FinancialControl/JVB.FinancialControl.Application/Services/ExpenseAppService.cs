@@ -37,6 +37,11 @@ namespace JVB.FinancialControl.Application.Services
             return _mapper.Map<IEnumerable<ExpenseViewModel>>(await _expenseRepository.GetAll());
         }
 
+        public async Task<IEnumerable<ExpenseViewModel>> GetByUserId(int userId)
+        {
+            return _mapper.Map<IEnumerable<ExpenseViewModel>>(await _expenseRepository.GetByUserId(userId));
+        }
+
         public async Task<IEnumerable<ExpenseMultiModel>> GetExpenseTable(int userId)
         {
             var expenses = await _expenseRepository.GetByUserId(userId);
@@ -124,18 +129,25 @@ namespace JVB.FinancialControl.Application.Services
             GC.SuppressFinalize(this);
         }
 
-        public async Task<BarChartModel> GetRevenueExpensesData()
+        public async Task<BarChartModel> GetRevenueExpensesData(int userId)
         {
-            await GetExpensesByCategoryData();
             var user = await _userRepository.GetById(2);
+
             int currentMonth = DateTime.Now.Month;
 
-            var expensesByUser = (await _expenseRepository.GetByUserId(2)).Where(x => x.Date.Month >= 1 && x.Date.Month <= currentMonth);
+            var expensesByUser = (await _expenseRepository.GetByUserId(userId)).Where(x => x.Date.Month >= 1 && x.Date.Month <= currentMonth);
 
             decimal[] revenues = Enumerable.Repeat(user.NetSalary, currentMonth).ToArray();
-            decimal[] expenses = Enumerable.Range(1, currentMonth)
-                .Select(i => expensesByUser.Where(x => x.Date.Month == i).Sum(y => y.Value))
-                .ToArray();
+            decimal[] expenses = new decimal[currentMonth];
+
+
+            for (int i = 0; i< currentMonth; i++)
+            {
+                var sum = expensesByUser.Where(x => x.Date.Month == i +1).Sum(y => y.Value);
+                expenses[i] =sum;
+            }
+
+
 
             return new BarChartModel
             {
@@ -144,9 +156,9 @@ namespace JVB.FinancialControl.Application.Services
             };
         }
 
-        public async Task<DonutChartModel> GetExpensesByCategoryData()
+        public async Task<DonutChartModel> GetExpensesByCategoryData(int userId)
         {
-            var user = await _userRepository.GetById(2);
+            var user = await _userRepository.GetById(userId);
 
             var expensesByUser = (await _expenseRepository.GetByUserId(2)).GroupBy(x => x.ExpenseCategory.Name);
             int quantity = expensesByUser.Count();
@@ -167,5 +179,7 @@ namespace JVB.FinancialControl.Application.Services
                 Expenses = expenses
             };
         }
+
+       
     }
 }

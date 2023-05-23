@@ -2,6 +2,7 @@ using JVB.FinancialControl.Application.Interfaces;
 using JVB.FinancialControl.Application.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace JVB.FinancialControl.Web.Controllers
 {
@@ -64,7 +65,7 @@ namespace JVB.FinancialControl.Web.Controllers
             {
                 Value = Convert.ToDecimal(enteredValue),
                 ExpenseCategoryId = Convert.ToInt32(categoryId),
-                UserId = 2,
+                UserId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier)),
                 Date =new DateTime(DateTime.Now.Year, Convert.ToInt32(month), 1),
             };
 
@@ -136,8 +137,9 @@ namespace JVB.FinancialControl.Web.Controllers
         [HttpGet("GetRevenueExpensesData")]
         public async Task<IActionResult> GetRevenueExpensesData()
         {
+            int userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-            var dataset = await _expenseAppService.GetRevenueExpensesData();
+            var dataset = await _expenseAppService.GetRevenueExpensesData(userId);
 
             var chartData = new
             {
@@ -155,8 +157,9 @@ namespace JVB.FinancialControl.Web.Controllers
         [HttpGet("GetExpensesByCategoryData")]
         public async Task<IActionResult> GetExpensesByCategoryData()
         {
+            int userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-            var dataset = await _expenseAppService.GetExpensesByCategoryData();
+            var dataset = await _expenseAppService.GetExpensesByCategoryData(userId);
 
             var chartData = new
             {
