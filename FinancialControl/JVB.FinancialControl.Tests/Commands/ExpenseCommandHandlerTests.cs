@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 using JVB.FinancialControl.Data.Interfaces;
-using JVB.FinancialControl.Domain.Commands.Currencies;
+using JVB.FinancialControl.Domain.Commands.Expenses;
 using JVB.FinancialControl.Tests.Mocks;
 using Moq;
 using Shouldly;
@@ -8,21 +8,21 @@ using Xunit;
 
 namespace JVB.FinancialControl.Tests.Commands
 {
-    public class CurrencyCommandHandlerTests
+    public class ExpenseCommandHandlerTests
     {
-        private readonly Mock<ICurrencyRepository> _mockUow;
-        private readonly CurrencyCommandHandler _handler;
+        private readonly Mock<IExpenseRepository> _mockUow;
+        private readonly ExpenseCommandHandler _handler;
 
-        public CurrencyCommandHandlerTests()
+        public ExpenseCommandHandlerTests()
         {
-            _mockUow = MockCurrencyRepository.GetCurrencyRepository();
-            _handler =  new CurrencyCommandHandler(_mockUow.Object);
+            _mockUow = MockExpenseRepository.GetExpenseRepository();
+            _handler =  new ExpenseCommandHandler(_mockUow.Object);
         }
 
         [Fact]
-        public async Task Valid_Currency_Add()
+        public async Task Valid_Expense_Add()
         {
-            var message = new RegisterNewCurrencyCommand("Libra", "GBP", "l");
+            var message = new RegisterNewExpenseCommand("Expense4", "Description4", 4, 4, DateTime.Now, 4, 4);
 
             var result = await _handler.Handle(message, CancellationToken.None);
 
@@ -34,9 +34,9 @@ namespace JVB.FinancialControl.Tests.Commands
         }
 
         [Fact]
-        public async Task InValid_Currency_Add()
+        public async Task InValid_Expense_Add()
         {
-            var message = new RegisterNewCurrencyCommand("Libra", "GBP3", "l");
+            var message = new RegisterNewExpenseCommand("Expense4", "Description4", 4, 4, DateTime.Now, 4, 0);
 
             var result = await _handler.Handle(message, CancellationToken.None);
 
@@ -50,9 +50,9 @@ namespace JVB.FinancialControl.Tests.Commands
         }
 
         [Fact]
-        public async Task Valid_Currency_Update()
+        public async Task Valid_Expense_Update()
         {
-            var message = new UpdateCurrencyCommand(1, "Dolar Updated", "USD", "USD");
+            var message = new UpdateExpenseCommand(1, "Expense1Updated", "Description1", 1, 1, DateTime.Now, 1, 1);
 
             var result = await _handler.Handle(message, CancellationToken.None);
 
@@ -66,9 +66,9 @@ namespace JVB.FinancialControl.Tests.Commands
         }
 
         [Fact]
-        public async Task InValid_Currency_Update()
+        public async Task InValid_Expense_Update()
         {
-            var message = new UpdateCurrencyCommand(1, "Dolar Updated", "USD3", "USD");
+            var message = new UpdateExpenseCommand(1, "Expense1Updated", "Description1", 1, 1, DateTime.Now, 0, 1);
 
             var result = await _handler.Handle(message, CancellationToken.None);
 
@@ -82,9 +82,9 @@ namespace JVB.FinancialControl.Tests.Commands
         }
 
         [Fact]
-        public async Task Valid_Currency_Remove()
+        public async Task Valid_Expense_Remove()
         {
-            var message = new RemoveCurrencyCommand(1);
+            var message = new RemoveExpenseCommand(1);
 
             var result = await _handler.Handle(message, CancellationToken.None);
 
@@ -96,9 +96,9 @@ namespace JVB.FinancialControl.Tests.Commands
         }
 
         [Fact]
-        public async Task InValid_Currency_Remove()
+        public async Task InValid_Expense_Remove()
         {
-            var message = new RemoveCurrencyCommand(5);
+            var message = new RemoveExpenseCommand(5);
 
             var result = await _handler.Handle(message, CancellationToken.None);
 

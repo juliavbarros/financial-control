@@ -14,7 +14,7 @@
             UserId = userId;
         }
 
-        protected Expense()
+        public Expense()
         { }
 
         public int Id { get; set; }

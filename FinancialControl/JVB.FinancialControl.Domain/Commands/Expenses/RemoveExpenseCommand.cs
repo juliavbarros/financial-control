@@ -9,8 +9,6 @@ namespace JVB.FinancialControl.Domain.Commands.Expenses
             Id = id;
         }
 
-        public int Id { get; protected set; }
-
         public override bool IsValid()
         {
             ValidationResult = new RemoveExpenseCommandValidation().Validate(this);

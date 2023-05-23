@@ -12,6 +12,7 @@
             ValidateBirthDate();
             ValidateGrossSalary();
             ValidateNetSalary();
+            ValidateUserTypeId();
         }
     }
 }

@@ -9,8 +9,6 @@ namespace JVB.FinancialControl.Domain.Commands.Currencies
             Id = id;
         }
 
-        public int Id { get; protected set; }
-
         public override bool IsValid()
         {
             ValidationResult = new RemoveCurrencyCommandValidation().Validate(this);

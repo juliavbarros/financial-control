@@ -14,7 +14,7 @@
             UserId = userId;
         }
 
-        protected Quotation()
+        public Quotation()
         { }
 
         public int Id { get; set; }

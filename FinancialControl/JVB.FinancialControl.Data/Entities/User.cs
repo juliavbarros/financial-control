@@ -16,7 +16,7 @@
             UserTypeId = userTypeId;
         }
 
-        protected User()
+        public User()
         { }
 
         public int Id { get; set; }

@@ -1,5 +1,4 @@
-﻿using FluentValidation.Results;
-using JVB.FinancialControl.Data.Entities;
+﻿using JVB.FinancialControl.Data.Entities;
 using JVB.FinancialControl.Data.Interfaces;
 using Moq;
 

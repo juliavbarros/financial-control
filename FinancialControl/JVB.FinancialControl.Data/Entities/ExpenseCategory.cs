@@ -8,7 +8,7 @@
             Name = name;
         }
 
-        protected ExpenseCategory()
+        public ExpenseCategory()
         { }
 
         public int Id { get; set; }

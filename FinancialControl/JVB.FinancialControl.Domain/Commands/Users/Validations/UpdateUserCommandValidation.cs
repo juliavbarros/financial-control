@@ -13,6 +13,7 @@
             ValidateBirthDate();
             ValidateGrossSalary();
             ValidateNetSalary();
+            ValidateUserTypeId();
         }
     }
 }
