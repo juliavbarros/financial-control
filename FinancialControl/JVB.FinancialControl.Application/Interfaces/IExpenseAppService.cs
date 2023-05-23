@@ -9,7 +9,10 @@ namespace JVB.FinancialControl.Application.Interfaces
         Task<IEnumerable<ExpenseViewModel>> GetAll();
 
         Task<IEnumerable<ExpenseMultiModel>> GetExpenseTable(int userId);
+
         Task<BarChartModel> GetRevenueExpensesData();
+
+        Task<DonutChartModel> GetExpensesByCategoryData();
 
         Task<ExpenseViewModel> GetById(int id);
 

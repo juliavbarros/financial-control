@@ -137,17 +137,32 @@ namespace JVB.FinancialControl.Web.Controllers
         public async Task<IActionResult> GetRevenueExpensesData()
         {
 
-            var dataset1Data = await _expenseAppService.GetRevenueExpensesData();
+            var dataset = await _expenseAppService.GetRevenueExpensesData();
 
             var chartData = new
             {
                 datasets = new[] {
-                new{data = dataset1Data.Expenses},
-                new{data = dataset1Data.Revenues}
+                new{data = dataset.Expenses},
+                new{data = dataset.Revenues}
                 }
             };
 
 
+            return Json(chartData);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("GetExpensesByCategoryData")]
+        public async Task<IActionResult> GetExpensesByCategoryData()
+        {
+
+            var dataset = await _expenseAppService.GetExpensesByCategoryData();
+
+            var chartData = new
+            {
+                labels = dataset.Category,
+                datasets = new[] { new { data = dataset.Expenses } }
+            };
             return Json(chartData);
         }
     }

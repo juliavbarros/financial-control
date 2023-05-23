@@ -126,13 +126,11 @@ namespace JVB.FinancialControl.Application.Services
 
         public async Task<BarChartModel> GetRevenueExpensesData()
         {
+            await GetExpensesByCategoryData();
             var user = await _userRepository.GetById(2);
             int currentMonth = DateTime.Now.Month;
 
             var expensesByUser = (await _expenseRepository.GetByUserId(2)).Where(x => x.Date.Month >= 1 && x.Date.Month <= currentMonth);
-
-
-            var test = expensesByUser.Where(x => x.Date.Month == 1).Sum(y => y.Value);
 
             decimal[] revenues = Enumerable.Repeat(user.NetSalary, currentMonth).ToArray();
             decimal[] expenses = Enumerable.Range(1, currentMonth)
@@ -143,6 +141,30 @@ namespace JVB.FinancialControl.Application.Services
             {
                 Expenses = expenses,
                 Revenues = revenues
+            };
+        }
+
+        public async Task<DonutChartModel> GetExpensesByCategoryData()
+        {
+            var user = await _userRepository.GetById(2);
+
+            var expensesByUser = (await _expenseRepository.GetByUserId(2)).GroupBy(x => x.ExpenseCategory.Name);
+            int quantity = expensesByUser.Count();
+            string[] categories = new string[quantity];
+            decimal[] expenses = new decimal[quantity];
+
+            int counter = 0;
+            foreach (var item in expensesByUser)
+            {
+                categories[counter] = item.Key;
+                expenses[counter] = item.Sum(y => y.Value);
+                counter++;
+            }
+
+            return new DonutChartModel
+            {
+                Category = categories,
+                Expenses = expenses
             };
         }
     }

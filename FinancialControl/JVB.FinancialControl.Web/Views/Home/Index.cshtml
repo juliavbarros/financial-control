@@ -105,7 +105,7 @@
                             <div class="card-body">
                                 <div class="chart">
                                     <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                    <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 764px;" width="764" height="250" class="chartjs-render-monitor"></canvas>
+                                    <canvas id="stackedBarChart" style="min-height: 350px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +126,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 764px;" width="764" height="250" class="chartjs-render-monitor"></canvas>
+                                <canvas id="pieChart" style="min-height: 350px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -142,104 +142,174 @@
     <!-- DataTables  & Plugins -->
     <script src="~/adminlte/plugins/datatable/jquery.datatables.min.js"></script>
     <script src="~/adminlte/plugins/datatable/datatables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
 
     <script>
-        $(function () {
+        function renderStackedBarChart() {
+            $(function () {
+                function getMonthLabels() {
+                    const months = [
+                        'Janeiro',
+                        'Fevereiro',
+                        'Março',
+                        'Abril',
+                        'Maio',
+                        'Junho',
+                        'Julho',
+                        'Agosto',
+                        'Setembro',
+                        'Outubro',
+                        'Novembro',
+                        'Dezembro'
+                    ];
 
-            function getMonthLabels() {
-                const months = [
-                    'Janeiro',
-                    'Fevereiro',
-                    'Março',
-                    'Abril',
-                    'Maio',
-                    'Junho',
-                    'Julho',
-                    'Agosto',
-                    'Setembro',
-                    'Outubro',
-                    'Novembro',
-                    'Dezembro'
-                ];
+                    const currentDate = new Date();
+                    const currentMonth = currentDate.getMonth();
 
-                const currentDate = new Date();
-                const currentMonth = currentDate.getMonth();
+                    // Generate labels from January to the current month
+                    const labels = months.slice(0, currentMonth + 1);
 
-                // Generate labels from January to the current month
-                const labels = months.slice(0, currentMonth + 1);
+                    return labels;
+                }
 
-                return labels;
-            }
+                function fetchDataAndUpdateChart() {
+                    $.ajax({
+                        url: "/Expense/GetRevenueExpensesData",
+                        method: 'GET',
+                        success: function (response) {
 
-            //var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
+                            // Assuming the response is an array of data points for each dataset
+                            var barChartData = {
+                                labels: getMonthLabels(),
+                                datasets: [
+                                    {
+                                        label: 'Despesas',
+                                        backgroundColor: 'rgba(60,141,188,0.9)',
+                                        borderColor: 'rgba(60,141,188,0.8)',
+                                        pointRadius: false,
+                                        pointColor: '#3b8bba',
+                                        pointStrokeColor: 'rgba(60,141,188,1)',
+                                        pointHighlightFill: '#fff',
+                                        pointHighlightStroke: 'rgba(60,141,188,1)',
+                                        data: response.datasets[0].data // Update the first dataset
+                                    },
+                                    {
+                                        label: 'Recebimento',
+                                        backgroundColor: 'rgba(210, 214, 222, 1)',
+                                        borderColor: 'rgba(210, 214, 222, 1)',
+                                        pointRadius: false,
+                                        pointColor: 'rgba(210, 214, 222, 1)',
+                                        pointStrokeColor: '#c1c7d1',
+                                        pointHighlightFill: '#fff',
+                                        pointHighlightStroke: 'rgba(220,220,220,1)',
+                                        data: response.datasets[1].data // Update the second dataset
+                                    },
+                                ]
+                            };
 
-            var bartChartData = {
-                labels: getMonthLabels(),
-                datasets: [
-                    {
-                        label: 'Despesas',
-                        backgroundColor: 'rgba(60,141,188,0.9)',
-                        borderColor: 'rgba(60,141,188,0.8)',
-                        pointRadius: false,
-                        pointColor: '#3b8bba',
-                        pointStrokeColor: 'rgba(60,141,188,1)',
-                        pointHighlightFill: '#fff',
-                        pointHighlightStroke: 'rgba(60,141,188,1)',
-                        data: []
-                    },
-                    {
-                        label: 'Recebimento',
-                        backgroundColor: 'rgba(210, 214, 222, 1)',
-                        borderColor: 'rgba(210, 214, 222, 1)',
-                        pointRadius: false,
-                        pointColor: 'rgba(210, 214, 222, 1)',
-                        pointStrokeColor: '#c1c7d1',
-                        pointHighlightFill: '#fff',
-                        pointHighlightStroke: 'rgba(220,220,220,1)',
-                        data: []
-                    },
-                ]
-            }
+                            // Get the canvas element
+                            var chartCanvas = $('#stackedBarChart').get(0).getContext('2d');
 
+                            var stackedBarChartOptions = {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                scales: {
+                                    xAxes: [{
+                                        stacked: true,
+                                    }],
+                                    yAxes: [{
+                                        stacked: true
+                                    }]
+                                }
+                            }
 
-            function fetchDataAndUpdateChart() {
+                            // Create the chart
+                            new Chart(chartCanvas, {
+                                type: 'bar',
+                                data: barChartData,
+                                options: stackedBarChartOptions
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Error fetching data:', error);
+                        }
+                    });
+                }
+
+                // Call the function to fetch data and update the chart on page render
+                fetchDataAndUpdateChart();
+            });
+        }
+
+        function renderPieChart() {
+            $(function () {
+
                 $.ajax({
-                    url: "/Expense/GetRevenueExpensesData",
+                    url: "/Expense/GetExpensesByCategoryData",
                     method: 'GET',
                     success: function (response) {
-                        console.log(response);
-                        // Assuming the response is an array of data points for each dataset
-                        bartChartData.datasets[0].data = response.datasets[0].data; // Update the first dataset
-                        bartChartData.datasets[1].data = response.datasets[1].data; // Update the second dataset
 
-                        // Render the chart with updated data
-                        renderChart(bartChartData);
+                        var pieData = {
+                            labels: response.labels,
+                            datasets: [
+                                {
+                                    data: response.datasets[0].data,
+                                    backgroundColor: ['#ee5b48', '#009d4e', '#ea9200', '#00b7ea', '#1385b8', '#c5ccdb', '#712428', '#3960ed', '#0a5043', '#0251d8', '#d6b211', '#64ab90', '#67b309', '#b53121', '#514b66', '#c6bd08', '#eb2c86', '#ba465f', '#cb018b', '#a328c0', '#c4217d', '#ebfe2e', '#efc225', '#6a83b2', '#9acdb3', '#8d132e', '#84b59c', '#c751be', '#b28bde', '#fdde5b'],
+                                }
+                            ]
+                        }
+
+                        // Get the canvas element
+                        var pieChartCanvas = $('#pieChart').get(0).getContext('2d');
+
+                        var pieOptions = {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                tooltip: {
+                                    callbacks: {
+                                        label: function (context) {
+                                            var value = context.raw;
+                                            var percentage = ((value / pieData.datasets[0].data.reduce((a, b) => a + b)) * 100).toFixed(2) + "%";
+                                            return percentage;
+                                        }
+                                    }
+                                },
+                                datalabels: {
+                                    formatter: function (value, context) {
+                                        var percentage = ((value / pieData.datasets[0].data.reduce((a, b) => a + b)) * 100).toFixed(2) + "%";
+                                        return percentage;
+                                    },
+                                    color: '#fff'
+                                }
+                            }
+                        }
+
+                        //Create pie or doughnut chart
+                        // You can switch between pie and doughnut using the method below.
+                        new Chart(pieChartCanvas, {
+                            type: 'pie',
+                            data: pieData,
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    datalabels: pieOptions.plugins.datalabels // Include the datalabels plugin here
+                                }
+                            }
+                        })
                     },
                     error: function (xhr, status, error) {
                         console.error('Error fetching data:', error);
                     }
                 });
-            }
+            });
+        }
 
-            // Call the function to fetch data and update the chart
-            fetchDataAndUpdateChart();
-
-            function renderChart(chartData) {
-
-                // Get the canvas element
-                var chartCanvas = $('#barChart').get(0).getContext('2d')
-
-                // Create the chart
-                 new Chart(chartCanvas, {
-                    type: 'bar',
-                    data: chartData,
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        // Add any other chart options or configurations here
-                    }
-                });
-            }
-        })
+        // Call the renderBarChart function when the page finishes loading
+        $(document).ready(function () {
+            renderStackedBarChart();
+            renderPieChart();
+        });
     </script>
 }
