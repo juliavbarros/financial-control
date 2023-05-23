@@ -71,7 +71,7 @@
                             <th>Outubro</th>
                             <th>Novembro</th>
                             <th>Dezembro</th>
-                            <th style="width: 10px" ></th>
+                            <th style="width: 10px"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -167,6 +167,7 @@
                         url: "/Expense/AddOrUpdateExpense",
                         data: { month: month, categoryId: categoryId, expenseId: expenseId, enteredValue: enteredValue },
                         success: function (response) {
+                            location.reload();
                             $td.effect("highlight", { color: "#ffff99" }, 2000);
                         },
                         failure: function (response) {

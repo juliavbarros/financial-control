@@ -131,5 +131,24 @@ namespace JVB.FinancialControl.Web.Controllers
             ViewBag.Sucesso = "Projeto removido!";
             return RedirectToAction("Index");
         }
+
+        [AllowAnonymous]
+        [HttpGet("GetRevenueExpensesData")]
+        public async Task<IActionResult> GetRevenueExpensesData()
+        {
+
+            var dataset1Data = await _expenseAppService.GetRevenueExpensesData();
+
+            var chartData = new
+            {
+                datasets = new[] {
+                new{data = dataset1Data.Expenses},
+                new{data = dataset1Data.Revenues}
+                }
+            };
+
+
+            return Json(chartData);
+        }
     }
 }
