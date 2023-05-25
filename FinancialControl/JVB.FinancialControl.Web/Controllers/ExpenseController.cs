@@ -149,7 +149,6 @@ namespace JVB.FinancialControl.Web.Controllers
                 }
             };
 
-
             return Json(chartData);
         }
 

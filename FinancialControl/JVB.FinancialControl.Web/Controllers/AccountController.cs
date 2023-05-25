@@ -42,11 +42,15 @@ namespace JVB.FinancialControl.Web.Controllers
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var principal = new ClaimsPrincipal(identity);
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,
-                    new AuthenticationProperties()
-                    {
-                        IsPersistent = loginViewModel.RememberLogin
-                    });
+
+                var authenticationProperties = new AuthenticationProperties
+                {
+                    IsPersistent = loginViewModel.RememberLogin,
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30)
+                };
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authenticationProperties);
+
                 return RedirectToAction("Index", "Home");
             }
             else

@@ -140,14 +140,11 @@ namespace JVB.FinancialControl.Application.Services
             decimal[] revenues = Enumerable.Repeat(user.NetSalary, currentMonth).ToArray();
             decimal[] expenses = new decimal[currentMonth];
 
-
             for (int i = 0; i< currentMonth; i++)
             {
                 var sum = expensesByUser.Where(x => x.Date.Month == i +1).Sum(y => y.Value);
                 expenses[i] =sum;
             }
-
-
 
             return new BarChartModel
             {
@@ -179,7 +176,5 @@ namespace JVB.FinancialControl.Application.Services
                 Expenses = expenses
             };
         }
-
-       
     }
 }

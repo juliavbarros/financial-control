@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Sobre";
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>
+                    @ViewData["Title"]
+                </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-text-width"></i>
+                        Framework
+                    </h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <h1>ASP .NET MVC 6</h1>
+                    <img src="~/adminlte/img/mvc_asp51.png" class="user-image img-square elevation-2" alt="User Image">
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- ./col -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-text-width"></i>
+                        Back-end e Front-end
+                    </h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <h1>Front-end</h1><br />
+                    <ul>
+                        <li><h5>HTML5</h5></li>
+                        <li><h5>CSS (Bootstrap, AdminLTE)</h5></li>
+                        <li><h5>Javascript (JQuery, AJAX)</h5></li>
+                    </ul>
+                    <h1>Back-end</h1><br />
+                    <ul>
+                        <li><h5>Arquitetura Multi camadas (Web, App, Data, Domain) </h5></li>
+                        <li><h5>C# ASP.NET 6.0 </h5></li>
+                        <li><h5>Entity Framework Core 6.0</h5></li>
+                        <li><h5>AutoMapper</h5></li>
+                        <li><h5>FluentValidator</h5></li>
+                        <li><h5>MediatR</h5></li>
+                        <li><h5>.NET Core Native DI</h5></li>
+                        <li><h5>Padrão Repository</h5></li>
+                        <li><h5>xUnit para Testes</h5></li>
+                    </ul>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- ./col -->
+    </div>
+</section>

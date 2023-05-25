@@ -1,6 +1,5 @@
 ﻿using JVB.FinancialControl.Application.Interfaces;
 using JVB.FinancialControl.Web.Models;
-using JVB.FinancialControl.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
@@ -11,7 +10,6 @@ namespace JVB.FinancialControl.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IExpenseAppService _expenseAppService;
-
 
         public HomeController(ILogger<HomeController> logger, IExpenseAppService expenseAppService)
         {
@@ -32,7 +30,7 @@ namespace JVB.FinancialControl.Web.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult About()
         {
             return View();
         }

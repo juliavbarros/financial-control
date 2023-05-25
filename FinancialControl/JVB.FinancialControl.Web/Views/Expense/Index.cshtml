@@ -30,7 +30,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li class="breadcrumb-item active">@ViewData["Title"]</li>
                 </ol>
             </div>
@@ -155,7 +155,7 @@
                         url: "/Expense/AddOrUpdateExpense",
                         data: { month: month, categoryId: categoryId, expenseId: expenseId, enteredValue: enteredValue },
                         success: function (response) {
-                            
+
                             $td.effect("highlight", { color: "#ffff99" }, 2000);
                             location.reload();
                         },
@@ -172,9 +172,3 @@
     </script>
 
     }
-
-
-
-
-
-
