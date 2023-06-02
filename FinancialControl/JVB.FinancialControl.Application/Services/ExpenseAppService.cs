@@ -131,7 +131,7 @@ namespace JVB.FinancialControl.Application.Services
 
         public async Task<BarChartModel> GetRevenueExpensesData(int userId)
         {
-            var user = await _userRepository.GetById(2);
+            var user = await _userRepository.GetById(userId);
 
             int currentMonth = DateTime.Now.Month;
 

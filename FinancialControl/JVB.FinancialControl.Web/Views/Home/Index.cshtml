@@ -5,7 +5,12 @@
     decimal currentMonth = ViewBag.CurrentMonth; 
 
     decimal difference = currentMonth - lastMonth;
-    decimal percentage = (difference / lastMonth) * 100;
+    decimal percentage = 0;
+
+    if(lastMonth != 0)
+    {
+        percentage =     (difference / lastMonth) * 100;
+    }
 }
 
 <div class="content-header">

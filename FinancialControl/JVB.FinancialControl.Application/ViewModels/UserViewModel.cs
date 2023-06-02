@@ -55,6 +55,6 @@ namespace JVB.FinancialControl.Application.ViewModels
         [DisplayName("Tipo Usuário")]
         public int UserTypeId { get; set; }
 
-        public string UsertTypeName { get; set; }
+        public string? UsertTypeName { get; set; }
     }
 }
