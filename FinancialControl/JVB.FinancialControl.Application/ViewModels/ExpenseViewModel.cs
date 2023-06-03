@@ -10,14 +10,14 @@ namespace JVB.FinancialControl.Application.ViewModels
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Nome requerido")]
-        [MinLength(2)]
-        [MaxLength(100)]
+        [MinLength(2, ErrorMessage = "O campo {0} deve ter no mínimo {1} caracteres.")]
+        [MaxLength(100, ErrorMessage = "O campo {0} deve ter no máximo {1} caracteres.")]
         [DisplayName("Nome")]
         public string? Name { get; set; }
 
         [Required(ErrorMessage = "E-mail requerido")]
-        [MinLength(2)]
-        [MaxLength(300)]
+        [MinLength(2, ErrorMessage = "O campo {0} deve ter no mínimo {1} caracteres.")]
+        [MaxLength(300, ErrorMessage = "O campo {0} deve ter no máximo {1} caracteres.")]
         [DisplayName("Descrição")]
         public string? Description { get; set; }
 

@@ -9,26 +9,26 @@ namespace JVB.FinancialControl.Application.ViewModels
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Nome requerido")]
-        [MinLength(2)]
-        [MaxLength(100)]
+        [MinLength(2, ErrorMessage = "O campo {0} deve ter no mínimo {1} caracteres.")]
+        [MaxLength(100, ErrorMessage = "O campo {0} deve ter no máximo {1} caracteres.")]
         [DisplayName("Username")]
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Senha requerida")]
-        [MinLength(2)]
-        [MaxLength(10)]
+        [MinLength(2, ErrorMessage = "O campo {0} deve ter no mínimo {1} caracteres.")]
+        [MaxLength(10, ErrorMessage = "O campo {0} deve ter no máximo {1} caracteres.")]
         [DisplayName("Senha")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Primeiro nome requerido")]
-        [MinLength(2)]
-        [MaxLength(100)]
+        [MinLength(2, ErrorMessage = "O campo {0} deve ter no mínimo {1} caracteres.")]
+        [MaxLength(100, ErrorMessage = "O campo {0} deve ter no máximo {1} caracteres.")]
         [DisplayName("Primeiro Nome")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Ultimo nome requerido")]
-        [MinLength(2)]
-        [MaxLength(100)]
+        [MinLength(2, ErrorMessage = "O campo {0} deve ter no mínimo {1} caracteres.")]
+        [MaxLength(100, ErrorMessage = "O campo {0} deve ter no máximo {1} caracteres.")]
         [DisplayName("Último Nome")]
         public string LastName { get; set; }
 
