@@ -1,7 +1,7 @@
 @model JVB.FinancialControl.Application.ViewModels.UserTypeViewModel
 
 @{
-    ViewData["Title"] = "Editar Tipo Usuário";
+    ViewData["Title"] = "Editar Tipo Usuario";
 }
 
 
@@ -30,7 +30,9 @@
                 <div class="card-body">
                     <div class="card-body">
 
-                        <vc:summary />
+@*                   @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+*@
+
 
                         <div class="form-group">
                             <label asp-for="Name" class="col-md-2 control-label"></label>

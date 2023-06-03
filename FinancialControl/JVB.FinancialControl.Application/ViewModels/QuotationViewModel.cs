@@ -8,30 +8,30 @@ namespace JVB.FinancialControl.Application.ViewModels
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "The InitialValue is Required")]
+        [Required(ErrorMessage = "Valor inicial requerido")]
         [DisplayName("Valor")]
         public decimal InitialValue { get; set; }
 
-        [Required(ErrorMessage = "The ConvertedValue is Required")]
+        [Required(ErrorMessage = "Valor convertido requerido")]
         [DisplayName("Valor Convertido")]
         public decimal ConvertedValue { get; set; }
 
-        [Required(ErrorMessage = "The QuotationDate is Required")]
+        [Required(ErrorMessage = "Data de conversao requerido")]
         [DisplayName("Data Conversao")]
         public DateTime QuotationDate { get; set; }
 
-        [Required(ErrorMessage = "The Rate is Required")]
+        [Required(ErrorMessage = "Taxa requerida")]
         public decimal Rate { get; set; }
 
-        [Required(ErrorMessage = "The FromCurrency is Required")]
+        [Required(ErrorMessage = "Moeda de origem requerida")]
         [DisplayName("Moeda Origem")]
         public int FromCurrencyId { get; set; }
 
-        [Required(ErrorMessage = "The ToCurrency is Required")]
+        [Required(ErrorMessage = "Moeda de destino requerida")]
         [DisplayName("Moeda Destino")]
         public int ToCurrencyId { get; set; }
 
-        [Required(ErrorMessage = "The UserId is Required")]
+        [Required(ErrorMessage = "Usuario requerido")]
         [DisplayName("Usuario")]
         public int UserId { get; set; }
 

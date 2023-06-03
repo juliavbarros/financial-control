@@ -7,29 +7,29 @@ namespace JVB.FinancialControl.Domain.Commands.Users.Validations
         protected void ValidateUsername()
         {
             RuleFor(c => c.Username)
-                .NotEmpty().WithMessage("Please ensure you have entered the Name")
-                .Length(2, 150).WithMessage("The Name must have between 2 and 150 characters");
+                .NotEmpty().WithMessage("Por favor insira o Nome")
+                .Length(2, 150).WithMessage("O Username deve ter entre 2 e 150 caracteres");
         }
 
         protected void ValidatePassword()
         {
             RuleFor(c => c.Password)
-                .NotEmpty().WithMessage("Please ensure you have entered the Password")
-                .Length(2, 10).WithMessage("The Name must have between 2 and 150 characters");
+                .NotEmpty().WithMessage("Por favor insira a Senha")
+                .Length(2, 10).WithMessage("A senha deve ter entre 2 e 150 caracteres");
         }
 
         protected void ValidateFirstName()
         {
             RuleFor(c => c.FirstName)
                 .NotEmpty().WithMessage("Please ensure you have entered the First Name")
-                .Length(2, 50).WithMessage("The Name must have between 2 and 150 characters");
+                .Length(2, 50).WithMessage("O Primeiro Nome deve ter entre 2 e 50 caracteres");
         }
 
         protected void ValidateLastName()
         {
             RuleFor(c => c.LastName)
                 .NotEmpty().WithMessage("Please ensure you have entered the Last Name")
-                .Length(2, 50).WithMessage("The Name must have between 2 and 150 characters");
+                .Length(2, 50).WithMessage("O último Nome deve ter entre 2 e 150 caracteres");
         }
 
         protected void ValidateBirthDate()
@@ -37,7 +37,7 @@ namespace JVB.FinancialControl.Domain.Commands.Users.Validations
             RuleFor(c => c.BirthDate)
                 .NotEmpty()
                 .Must(HaveMinimumAge)
-                .WithMessage("The customer must have 18 years or more");
+                .WithMessage("A idade deve ser superior a 18 anos");
         }
 
         protected void ValidateGrossSalary()

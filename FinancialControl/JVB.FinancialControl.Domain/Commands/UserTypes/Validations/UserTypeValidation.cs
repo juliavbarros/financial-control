@@ -7,8 +7,8 @@ namespace JVB.FinancialControl.Domain.Commands.UserTypes.Validations
         protected void ValidateName()
         {
             RuleFor(c => c.Name)
-                .NotEmpty().WithMessage("Please ensure you have entered the Name")
-                .Length(2, 150).WithMessage("The Name must have between 2 and 150 characters");
+                .NotEmpty().WithMessage("Por favor insira o nome")
+                .Length(2, 150).WithMessage("O Nome deve ter entre 2 e 150 caracteres");
         }
 
         protected void ValidateId()

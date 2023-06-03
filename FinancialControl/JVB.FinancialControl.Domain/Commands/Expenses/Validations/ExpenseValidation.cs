@@ -7,7 +7,7 @@ namespace JVB.FinancialControl.Domain.Commands.Expenses.Validations
         protected void ValidateValue()
         {
             RuleFor(c => c.Value)
-                .NotEqual(0);
+                .NotEqual(0).WithMessage("O valor não pode ser igual a 0");
         }
 
         protected void ValidateId()

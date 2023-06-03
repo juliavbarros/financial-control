@@ -157,7 +157,7 @@ namespace JVB.FinancialControl.Application.Services
         {
             var user = await _userRepository.GetById(userId);
 
-            var expensesByUser = (await _expenseRepository.GetByUserId(2)).GroupBy(x => x.ExpenseCategory.Name);
+            var expensesByUser = (await _expenseRepository.GetByUserId(userId)).GroupBy(x => x.ExpenseCategory.Name);
             int quantity = expensesByUser.Count();
             string[] categories = new string[quantity];
             decimal[] expenses = new decimal[quantity];

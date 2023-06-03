@@ -19,7 +19,7 @@ namespace JVB.FinancialControl.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            int savingTypeId = 10;
+            int savingTypeId = 13;
             int userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
             var expenses = await _expenseAppService.GetByUserId(userId);

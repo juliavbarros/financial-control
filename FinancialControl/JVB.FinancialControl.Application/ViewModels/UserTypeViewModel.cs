@@ -8,7 +8,7 @@ namespace JVB.FinancialControl.Application.ViewModels
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "The Name is Required")]
+        [Required(ErrorMessage = "Nome requerido")]
         [MinLength(2)]
         [MaxLength(100)]
         [DisplayName("Nome")]

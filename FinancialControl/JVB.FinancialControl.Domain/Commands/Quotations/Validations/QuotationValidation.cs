@@ -7,24 +7,24 @@ namespace JVB.FinancialControl.Domain.Commands.Quotations.Validations
         protected void ValidateRate()
         {
             RuleFor(c => c.Rate)
-                .NotEqual(0);
+                .NotEqual(0).WithMessage("O valor não pode ser igual a 0.");
         }
 
         protected void ValidateInitialValue()
         {
             RuleFor(c => c.InitialValue)
-                .NotEqual(0);
+                .NotEqual(0).WithMessage("O valor não pode ser igual a 0.");
         }
 
         protected void ValidateConvertedValue()
         {
             RuleFor(c => c.ConvertedValue)
-                .NotEqual(0);
+                .NotEqual(0).WithMessage("O valor não pode ser igual a 0.");
         }
 
         protected void ValidateQuotationDate()
         {
-            RuleFor(c => c.QuotationDate).NotEmpty();
+            RuleFor(c => c.QuotationDate).NotEmpty().WithMessage("O valor não pode ser vazio.");
         }
 
         protected void ValidateId()

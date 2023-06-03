@@ -13,7 +13,7 @@ namespace JVB.FinancialControl.Web.Controllers
 
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError(string.Empty, error.ErrorMessage);
+                ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
             }
 
             return true;

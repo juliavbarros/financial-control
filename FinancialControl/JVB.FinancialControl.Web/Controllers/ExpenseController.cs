@@ -22,7 +22,7 @@ namespace JVB.FinancialControl.Web.Controllers
         [HttpGet("Index")]
         public async Task<IActionResult> Index()
         {
-            return View(await _expenseAppService.GetExpenseTable(2));
+            return View(await _expenseAppService.GetExpenseTable(Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier))));
         }
 
         [AllowAnonymous]

@@ -9,19 +9,19 @@ namespace JVB.FinancialControl.Application.ViewModels
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "The Name is Required")]
+        [Required(ErrorMessage = "Nome requerido")]
         [MinLength(2)]
         [MaxLength(100)]
         [DisplayName("Nome")]
         public string? Name { get; set; }
 
-        [Required(ErrorMessage = "The E-mail is Required")]
+        [Required(ErrorMessage = "E-mail requerido")]
         [MinLength(2)]
         [MaxLength(300)]
         [DisplayName("Descrição")]
         public string? Description { get; set; }
 
-        [Required(ErrorMessage = "The Value is Required")]
+        [Required(ErrorMessage = "Valor requerido")]
         [DisplayName("Valor")]
         public decimal Value { get; set; }
 
