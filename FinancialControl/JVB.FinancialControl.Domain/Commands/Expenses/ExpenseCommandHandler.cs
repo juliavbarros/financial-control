@@ -23,12 +23,6 @@ namespace JVB.FinancialControl.Domain.Commands.Expenses
 
             var expense = new Expense(0, message.Name, message.Description, message.Value, message.CurrentInstallment, message.Date, message.ExpenseCategoryId, message.UserId);
 
-            //if (await _expenseRepository.GetByCategory(expense.Name) != null)
-            //{
-            //    AddError("The expense name has already been taken.");
-            //    return ValidationResult;
-            //}
-
             _expenseRepository.Add(expense);
 
             return await Commit(_expenseRepository.UnitOfWork);
@@ -39,18 +33,7 @@ namespace JVB.FinancialControl.Domain.Commands.Expenses
             if (!message.IsValid()) return message.ValidationResult;
 
             var expense = new Expense(message.Id, message.Name, message.Description, message.Value, message.CurrentInstallment, message.Date, message.ExpenseCategoryId, message.UserId);
-
-            //var existingExpense = await _expenseRepository.GetByName(expense.Name);
-
-            //if (existingExpense != null && existingExpense.Id != expense.Id)
-            //{
-            //    if (!existingExpense.Equals(expense))
-            //    {
-            //        AddError("The expense e-mail has already been taken.");
-            //        return ValidationResult;
-            //    }
-            //}
-
+      
             _expenseRepository.Update(expense);
 
             return await Commit(_expenseRepository.UnitOfWork);
