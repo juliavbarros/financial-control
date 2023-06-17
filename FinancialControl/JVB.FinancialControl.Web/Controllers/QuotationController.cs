@@ -3,6 +3,7 @@ using JVB.FinancialControl.Application.ViewModels;
 using JVB.FinancialControl.Web.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace JVB.FinancialControl.Web.Controllers
 {
@@ -29,7 +30,7 @@ namespace JVB.FinancialControl.Web.Controllers
         {
             ViewBag.CurrencyList = await _currencyAppService.GetAll();
 
-            return View((await _quotationAppService.GetAll()).OrderByDescending(x => x.Id));
+            return View((await _quotationAppService.GetAll()).Where(x=> x.UserId == Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier))).OrderByDescending(x => x.Id));
         }
 
         [AllowAnonymous]
